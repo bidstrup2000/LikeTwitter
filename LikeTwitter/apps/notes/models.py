@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib import admin
-class note(models.Model):
+class Note(models.Model):
     body = models.TextField()
-admin.site.register(note)
+    def __unicode__(self):
+        return self.body
+        
+admin.site.register(Note)
