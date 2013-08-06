@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,6 +18,16 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^notes/', include('LikeTwitter.apps.notes.views')),    
+    #url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.templates', name='search_id'),
+    
+    #
+    url(r'(?:.*?/)?(?P<path>(css|jquery|jscripts|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
+    #url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
+    url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),    
     url(r'^notes/', 'LikeTwitter.apps.notes.views.index', name='index'),
-    url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),
 )
+#urlpatterns += patterns('', (
+#    r'^static/(?P<path>.*)$',
+#    'django.views.static.serve',
+#    {'document_root': settings.STATIC_ROOT}
+#))
