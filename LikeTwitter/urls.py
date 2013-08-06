@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^notes/', include('LikeTwitter.apps.notes.views')),    
     url(r'^notes/', 'LikeTwitter.apps.notes.views.index', name='index'),
+    url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),
 )

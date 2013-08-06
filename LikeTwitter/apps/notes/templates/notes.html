@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>    
+ {% load templatetags %}  
   <title> Notes</title> 
    <!-- <style type="text/css">-->
    <style>
@@ -16,23 +17,17 @@
    }
   </style>
 
-   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+   <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <!-- Custom styles for this template -->
-   <link href="css/starter-template.css" rel="stylesheet">
+   <link href="/css/starter-template.css" rel="stylesheet">
  </head>     
     <body>
-     
      <div class="container">     
       <div class="starter-template">
-      <h1>Notes</h1>
-     {% for note in notes %}
-     <p>
-      {{ note }} 
-     </p>    
-     {% endfor %}
-
-     <script src="http://code.jquery.com/jquery-latest.js"></script>     
-     <script src="js/bootstrap.min.js"></script>    
+       <h1>Notes</h1>
+      {% search_by_id  id_of_note %}
+      <script src="http://code.jquery.com/jquery-latest.js"></script>     
+     <script src="/js/bootstrap.min.js"></script>    
       </div>
     </div>
     </body>
