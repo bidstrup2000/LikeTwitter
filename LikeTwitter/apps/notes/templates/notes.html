@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>    
-  <title> Notes</title> 
-   <!-- <style type="text/css">-->
-   <style>
-   body{
-    background-color: RGB(250, 240, 230)
-   } 
-   h1 {
-    background-color: RGB(255, 218, 185)
-   }
-   p {
-    background-color: RGB(255, 228, 225);
-    color: black
-   }
-  </style>
-
-   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <!-- Custom styles for this template -->
-   <link href="css/starter-template.css" rel="stylesheet">
+   {% load staticfiles %} 
+   <link href="/{{ STATIC_ROOT }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+   <link href="/{{ STATIC_ROOT }}css/grid.css" rel="stylesheet">
  </head>     
     <body>
-     
-     <div class="container">     
-      <div class="starter-template">
+      <div class="container">     
+      <h2>7Pages Twitter</h2>
       <h1>Notes</h1>
-     {% for note in notes %}
-     <p>
-      {{ note }} 
-     </p>    
-     {% endfor %}
-
-     <script src="http://code.jquery.com/jquery-latest.js"></script>     
-     <script src="js/bootstrap.min.js"></script>    
+       {% for note in notes %}
+         <div class="row">               
+           <div class="col-lg-8">{{ note }} </div>
+         </div>
+       {% endfor %}
+      <script src="http://code.jquery.com/jquery-latest.js"></script>
+      <script src="/js/bootstrap.min.js"></script>    
       </div>
-    </div>
     </body>
-    
 </html>
