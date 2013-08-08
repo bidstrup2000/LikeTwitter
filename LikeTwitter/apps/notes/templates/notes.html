@@ -20,9 +20,9 @@
        </div>
       {% endfor %}
       <script src="http://code.jquery.com/jquery-latest.js"></script>     
-      <script src="/js/bootstrap.min.js"></script>    
-      <form action="/add/" method="post" >{% csrf_token %}
-        {{ form.as_p }}
+      <script src="/{{ STATIC_ROOT }}/js/bootstrap.min.js"></script>    
+      <form action="" method="post" >{% csrf_token %}
+        {{ form }}
        <input type="submit" value= "Send">      
       </form>
      </div>
