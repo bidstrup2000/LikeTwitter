@@ -3,5 +3,6 @@ from LikeTwitter.apps.notes.models import Note
 
 class  Add_Form(forms.ModelForm):
     body = forms.CharField(min_length=10)    
+    symbol_count = forms.CharField(required=False)
     class Meta:
         model = Note
