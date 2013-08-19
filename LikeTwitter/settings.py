@@ -48,23 +48,26 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
-
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+
+
+MEDIA_URL = os.path.join(PROJECT_DIR, 'media/')
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/templates/') 
+
+STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/static/') 
+#STATIC_ROOT =  ''
 #STATIC_ROOT =  os.path.join(PROJECT_DIR, 'static/') 
 
 # URL prefix for static files.
@@ -73,7 +76,11 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-     #os.path.join(PROJECT_DIR, 'apps', 'notes' , 'template'),
+    #os.path.join(PROJECT_DIR, 'apps/notes/static/'), 
+    #os.path.join(PROJECT_DIR, 'apps/notes/static/js'),
+    #os.path.join(PROJECT_DIR, 'apps/notes/static/css'),     
+    #'static/'
+    #os.path.join(PROJECT_DIR, 'apps', 'notes' , 'template'),
     #os.path.abspath(os.path.join(PROJECT_DIR,"css/")),     
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.

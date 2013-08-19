@@ -13,7 +13,10 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'(?:.*?/)?(?P<path>(css|jquery|jscripts|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
+    #url(r'(?:.*?/)?(?P<path>(css|jquery|jscripts|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
+    url(r'(?:.*?/)?(?P<path>(css|fonts|js|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
+    #url(r'^media/(?P<path>.*)$', 'django.views.media.serve', {'document_root': settings.MEDIA_ROOT }), 
+    #url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True }),    
     url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),    
     url(r'^notes/$', 'LikeTwitter.apps.notes.views.index', name='index'),
 )

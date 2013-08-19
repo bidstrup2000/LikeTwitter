@@ -8,13 +8,14 @@ from LikeTwitter.apps.notes.models import Note
 from LikeTwitter.apps.notes.forms import Add_Form
 
 def index(request):
+    #m = Note.objects.filter(pk__gt=7).delete()
     notes_list = Note.objects.all()
     t = loader.get_template(r'notes.html')
     c = Context({'notes':notes_list})
     if request.method == "POST":
         #request with data
         form = Add_Form(request.POST)
-        if form.is_valid():
+        if form.is_valid(): 
             form.save()
     else:
          form = Add_Form()

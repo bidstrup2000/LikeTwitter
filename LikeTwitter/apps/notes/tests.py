@@ -26,12 +26,11 @@ class My_test_case(WebTest):
                          'Duis at dolor neque',}
         for t in text_of_notes:
             page['body'] = t
-            self.assertEqual(page['symbol_count'], len(t))
+            self.assertEqual(page['id_symbol_count'].value, len(t))
             #page.submit()
 
     def test_ticket4_write_custom_widget_admin_interface(self):
             page = self.app.get(reverse('admin')).form
-            if page.contain
             page['id_username'] = 'Andrii'
             page['id_password'] = 'Pamukkale2009'
             page = page.submit().follow()
@@ -42,5 +41,5 @@ class My_test_case(WebTest):
                              'Duis at dolor neque',}
             for t in text_of_notes:
                 page['body'] = t
-                self.assertEqual(page['symbol_count'], len(t))
+                self.assertEqual(page['id_symbol_count'].value, len(t))
        
