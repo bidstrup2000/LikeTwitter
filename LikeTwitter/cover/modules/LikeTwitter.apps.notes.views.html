@@ -129,14 +129,14 @@
     20 total statements,
     <span class="normal">78.6% covered</span>
   </h1>
-  <p>Generated: Sun 2013-08-18 17:40 Финляндия (лето)</p>
+  <p>Generated: Mon 2013-08-19 23:59 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\views.py</p>
   <p>
     Stats:
     <span class="executed">11 executed</span>,
     <span class="missed">3 missed</span>,
     <span class="excluded">6 excluded</span>,
-    <span class="ignored">8 ignored</span> 
+    <span class="ignored">9 ignored</span> 
   </p> 
 </div>
 
@@ -152,6 +152,7 @@
 <li class="excluded"><code>from LikeTwitter.apps.notes.forms import Add_Form</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>def index(request):</code></li>
+<li class="ignored"><code>    #m = Note.objects.filter(pk__gt=7).delete()</code></li>
 <li class="executed"><code>    notes_list = Note.objects.all()</code></li>
 <li class="executed"><code>    t = loader.get_template(r'notes.html')</code></li>
 <li class="executed"><code>    c = Context({'notes':notes_list})</code></li>

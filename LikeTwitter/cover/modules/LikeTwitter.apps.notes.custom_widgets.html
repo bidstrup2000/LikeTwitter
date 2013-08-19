@@ -129,14 +129,14 @@
     7 total statements,
     <span class="normal">100.0% covered</span>
   </h1>
-  <p>Generated: Sun 2013-08-18 17:40 Финляндия (лето)</p>
+  <p>Generated: Mon 2013-08-19 23:59 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\custom_widgets.py</p>
   <p>
     Stats:
     <span class="executed">4 executed</span>,
     <span class="missed">0 missed</span>,
     <span class="excluded">3 excluded</span>,
-    <span class="ignored">11 ignored</span> 
+    <span class="ignored">10 ignored</span> 
   </p> 
 </div>
 
@@ -149,17 +149,16 @@
 <li class="executed"><code>class TextareaWithAmountOfSymbol(forms.Textarea):</code></li>
 <li class="executed"><code>   def render(self, name, value, attrs=None):</code></li>
 <li class="executed"><code>      tpl = Template(u"""</code></li>
-<li class="ignored"><code>      &lt;tr&gt;</code></li>
-<li class="ignored"><code>        &lt;th&gt;&lt;label for="id_body"&gt;Body:&lt;/label&gt;&lt;/th&gt;</code></li>
-<li class="ignored"><code>           &lt;td&gt;&lt;textarea cols="40" id="id_body" name="body" rows="10"&gt;$body&lt;/textarea&gt;&lt;/td&gt;</code></li>
-<li class="ignored"><code>      &lt;/tr&gt;</code></li>
-<li class="ignored"><code>      &lt;tr&gt;</code></li>
-<li class="ignored"><code>             &lt;script type="text/javascript language="javascript" src="/{{ STATIC_ROOT }}/js/text_area_with_counter.js"&gt;</code></li>
-<li class="ignored"><code>      &lt;/tr&gt;""")</code></li>
+<li class="ignored"><code>      &lt;textarea cols="40" id="id_body" name="body" rows="10"&gt;$body&lt;/textarea&gt;</code></li>
+<li class="ignored"><code>      &lt;h5 id="id_symbol_count" name = "symbols_count"&gt;&lt;/h5&gt;</code></li>
+<li class="ignored"><code>      &lt;script src="js/text_area_with_counter.js"&gt;&lt;/script&gt;</code></li>
+<li class="ignored"><code>      """)</code></li>
 <li class="executed"><code>      return mark_safe(tpl.substitute(body = value))</code></li>
-<li class="ignored"><code>#   &lt;th&gt;&lt;label for="id_symbol_count"&gt;Symbol count:&lt;/label&gt;&lt;/th&gt;</code></li>
-<li class="ignored"><code>#               &lt;td&gt;&lt;input id="id_symbol_count" name="id_symbol_count" type="text" readonly/&gt;&lt;/td&gt;</code></li>
-<li class="ignored"><code></code></li>
+<li class="ignored"><code># &lt;script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"&gt;&lt;/script&gt;</code></li>
+<li class="ignored"><code># &lt;script src="http://code.jquery.com/jquery-latest.js"&gt;&lt;/script&gt;</code></li>
+<li class="ignored"><code># &lt;script type="text/javascript" language="javascript" src="{% static 'js/jquery-1.10.2.min.js'%}"&gt;&lt;/script&gt;</code></li>
+<li class="ignored"><code>#return mark_safe(tpl.substitute(body = value))</code></li>
+<li class="ignored"><code>#jQuery("#id_body").after();</code></li>
   </ol>
 </div>
 

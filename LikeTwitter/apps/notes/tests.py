@@ -20,14 +20,18 @@ class My_test_case(WebTest):
     
     def test_ticket4_write_custom_widget_creating_new_form(self):
         page = self.app.get(reverse('index')).form
+        #print page.__class__
         text_of_notes = {'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
                          'Nam id feugiat velit, quis placerat nisl. Nulla vel sagittis justo.',
                          'Duis facilisis nisl id tempor ultricies.',
                          'Duis at dolor neque',}
         for t in text_of_notes:
             page['body'] = t
-            self.assertEqual(page['id_symbol_count'].value, len(t))
-            #page.submit()
+            result_page = page.submit()
+            print result_page
+            print (u'Symbols count(min. 10):    ' + str(len(t)))
+            assert (u'Symbols count(min. 10):    ' + str(len(t))) in result_page
+            #I have AssertionError at this place
 
     def test_ticket4_write_custom_widget_admin_interface(self):
             page = self.app.get(reverse('admin')).form
