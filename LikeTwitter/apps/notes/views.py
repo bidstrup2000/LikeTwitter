@@ -20,10 +20,18 @@ def index(request):
     else:
          form = NewNoteForm()
     return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request)) 
+
 def search_id(request, id_of_note):
     t = loader.get_template(r'search_note.html')
     c = Context({'id_of_note':id_of_note})
     return HttpResponse(t.render(c))
+
+def add_note_ajax(request):
+    response = HttpResponse()
+    t = u"""<div class="col-lg-8">{{ note }} </div>"""
+    c = Context({'note':note})
+    return HttpResponse(t.render(c))
+
 
 
 

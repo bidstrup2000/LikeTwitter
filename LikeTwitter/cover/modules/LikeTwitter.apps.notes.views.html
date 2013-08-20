@@ -126,17 +126,17 @@
 <div id="content-header">
   <h1>
     <span id="module-name">LikeTwitter.apps.notes.views</span>:
-    20 total statements,
-    <span class="normal">78.6% covered</span>
+    25 total statements,
+    <span class="warning">63.2% covered</span>
   </h1>
-  <p>Generated: Tue 2013-08-20 15:04 Финляндия (лето)</p>
+  <p>Generated: Tue 2013-08-20 18:49 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\views.py</p>
   <p>
     Stats:
-    <span class="executed">11 executed</span>,
-    <span class="missed">3 missed</span>,
+    <span class="executed">12 executed</span>,
+    <span class="missed">7 missed</span>,
     <span class="excluded">6 excluded</span>,
-    <span class="ignored">9 ignored</span> 
+    <span class="ignored">12 ignored</span> 
   </p> 
 </div>
 
@@ -164,10 +164,18 @@
 <li class="ignored"><code>    else:</code></li>
 <li class="executed"><code>         form = NewNoteForm()</code></li>
 <li class="executed"><code>    return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request))</code></li>
+<li class="ignored"><code></code></li>
 <li class="executed"><code>def search_id(request, id_of_note):</code></li>
 <li class="missed"><code>    t = loader.get_template(r'search_note.html')</code></li>
 <li class="missed"><code>    c = Context({'id_of_note':id_of_note})</code></li>
 <li class="missed"><code>    return HttpResponse(t.render(c))</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>def add_note_ajax(request):</code></li>
+<li class="missed"><code>    response = HttpResponse()</code></li>
+<li class="missed"><code>    t = u"""&lt;div class="col-lg-8"&gt;{{ note }} &lt;/div&gt;"""</code></li>
+<li class="missed"><code>    c = Context({'note':note})</code></li>
+<li class="missed"><code>    return HttpResponse(t.render(c))</code></li>
+<li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>

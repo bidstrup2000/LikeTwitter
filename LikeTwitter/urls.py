@@ -17,7 +17,8 @@ urlpatterns = patterns('',
     url(r'(?:.*?/)?(?P<path>(css|fonts|js|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
     #url(r'^media/(?P<path>.*)$', 'django.views.media.serve', {'document_root': settings.MEDIA_ROOT }), 
     #url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True }),    
-    url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),    
+    url(r'^notes/(?P<id_of_note>[0-9]+)', 'LikeTwitter.apps.notes.views.search_id', name='search_id'),
     url(r'^notes/$', 'LikeTwitter.apps.notes.views.index', name='index'),
+    url(r'^add/$', 'LikeTwitter.apps.notes.views.add_note_ajax', name='add_note_ajax'),
 )
 
