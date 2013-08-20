@@ -129,7 +129,7 @@
     20 total statements,
     <span class="normal">78.6% covered</span>
   </h1>
-  <p>Generated: Mon 2013-08-19 23:59 Финляндия (лето)</p>
+  <p>Generated: Tue 2013-08-20 13:04 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\views.py</p>
   <p>
     Stats:
@@ -149,7 +149,7 @@
 <li class="excluded"><code>from django.template import RequestContext</code></li>
 <li class="excluded"><code>from django.http import HttpResponse</code></li>
 <li class="excluded"><code>from LikeTwitter.apps.notes.models import Note</code></li>
-<li class="excluded"><code>from LikeTwitter.apps.notes.forms import Add_Form</code></li>
+<li class="excluded"><code>from LikeTwitter.apps.notes.forms import NewNoteForm</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>def index(request):</code></li>
 <li class="ignored"><code>    #m = Note.objects.filter(pk__gt=7).delete()</code></li>
@@ -158,11 +158,11 @@
 <li class="executed"><code>    c = Context({'notes':notes_list})</code></li>
 <li class="executed"><code>    if request.method == "POST":</code></li>
 <li class="ignored"><code>        #request with data</code></li>
-<li class="executed"><code>        form = Add_Form(request.POST)</code></li>
+<li class="executed"><code>        form = NewNoteForm(request.POST)</code></li>
 <li class="executed"><code>        if form.is_valid():</code></li>
 <li class="executed"><code>            form.save()</code></li>
 <li class="ignored"><code>    else:</code></li>
-<li class="executed"><code>         form = Add_Form()</code></li>
+<li class="executed"><code>         form = NewNoteForm()</code></li>
 <li class="executed"><code>    return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request))</code></li>
 <li class="executed"><code>def search_id(request, id_of_note):</code></li>
 <li class="missed"><code>    t = loader.get_template(r'search_note.html')</code></li>
