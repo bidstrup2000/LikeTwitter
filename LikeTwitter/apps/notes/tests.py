@@ -34,6 +34,7 @@ class My_test_case(WebTest):
             #I have AssertionError at this place
 
     def test_ticket4_write_custom_widget_admin_interface(self):
+        
             page = self.app.get(reverse('admin')).form
             page['id_username'] = 'Andrii'
             page['id_password'] = 'Pamukkale2009'

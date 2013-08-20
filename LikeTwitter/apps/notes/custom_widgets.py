@@ -10,8 +10,7 @@ class TextareaWithAmountOfSymbol(forms.Textarea):
       <script src="js/text_area_with_counter.js"></script>                
       """)
       return mark_safe(tpl.substitute(body = value))
+
 # <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
 # <script src="http://code.jquery.com/jquery-latest.js"></script>
 # <script type="text/javascript" language="javascript" src="{% static 'js/jquery-1.10.2.min.js'%}"></script>   
-#return mark_safe(tpl.substitute(body = value))
-#jQuery("#id_body").after();

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
     body = models.TextField()
@@ -7,5 +8,5 @@ class Note(models.Model):
         return self.body
     #def __init__(self, text_of_note):
     #    self.body =  text_of_note
-        
-admin.site.register(Note)
+
+#admin.site.register(Note)
