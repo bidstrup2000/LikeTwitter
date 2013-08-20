@@ -9,7 +9,7 @@ function call() {
             $('.row').after(data);
         },
         error:  function(xhr, str){
-            alert('Возникла ошибка: ' + xhr.responseCode);
+            alert('Exception ' + xhr.responseCode);
         }
     });
 }
