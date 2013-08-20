@@ -89,6 +89,7 @@ STATICFILES_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static' ,
+    'LikeTwitter.apps.notes.context_processors.count_of_notes'
 )
 
 # List of finder classes that know how to find static files in
