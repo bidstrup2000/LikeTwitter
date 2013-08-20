@@ -45,7 +45,19 @@ class My_test_case(WebTest):
             page.submit()
             page = self.app.get(reverse('index'))
             #print 'Count '+str(Note.objects.count())
-            assert (u'Notes count: ' + str(Note.objects.count())) in page        
+            assert (u'Notes count: ' + str(Note.objects.count())) in page   
+            
+    def test_ticket6_use_Ajax_to_create_new_text_note(self):
+        text_of_notes = {'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
+                         'Nam id feugiat velit, quis placerat nisl. Nulla vel sagittis justo.',
+                         'Duis facilisis nisl id tempor ultricies.',
+                         'Duis at dolor neque',}
+        for t in text_of_notes:
+            page = self.app.get(reverse('index')).form
+            page['body'] = t
+            page.submit()
+            #print 'body '+str(Note.objects.get(body = t).body)
+            self.assertEqual(Note.objects.get(body = t).body,t)
 
 
 
