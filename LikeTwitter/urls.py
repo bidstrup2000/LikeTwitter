@@ -7,16 +7,9 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^$', 'LikeTwitter.apps.notes.views.index', name='index'),
-    # url(r'^LikeTwitter/', include('LikeTwitter.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    url(r'(?:.*?/)?(?P<path>(css|jquery|jscripts|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }),     
+    url(r'(?:.*?/)?(?P<path>(css|jquery|js|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }),     
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^notes/', include('LikeTwitter.apps.notes.views')),    
     url(r'^notes/', 'LikeTwitter.apps.notes.views.index', name='index'),
 )

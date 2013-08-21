@@ -1,16 +1,12 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+from django.core.urlresolvers import reverse 
+from django_webtest import WebTest
+from LikeTwitter.apps.notes.models import Note
 
-Replace this with more appropriate tests for your application.
-"""
-
-from django.test import TestCase
-
-
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class My_test_case(WebTest):    
+    #fixtures = ['fixtures\notes.json']
+    
+    def test_ticket1_create_app_that_shows_list_of_text_notes(self):
+        note_list = Note.objects.all()
+        page = self.app.get(reverse('index'))
+        for note_string in note_list:
+            assert note_string in page
