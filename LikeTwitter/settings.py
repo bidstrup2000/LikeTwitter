@@ -62,7 +62,7 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
-STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/templates/') 
+STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/static/') 
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -73,6 +73,11 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+)
+TEMPLATE_CONTEXT_PROCESSORS = (    
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static' ,
+    'LikeTwitter.apps.notes.context_processors.count_of_notes'
 )
 
 # List of finder classes that know how to find static files in
@@ -109,6 +114,7 @@ ROOT_URLCONF = 'LikeTwitter.urls'
 WSGI_APPLICATION = 'LikeTwitter.wsgi.application'
 
 TEMPLATE_DIRS = (
+    "/apps/notes/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

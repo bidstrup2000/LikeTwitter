@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib import admin
+
 class Note(models.Model):
+    """
+    Stores a note entry
+    """
     body = models.TextField()
     def __unicode__(self):
         return self.body
