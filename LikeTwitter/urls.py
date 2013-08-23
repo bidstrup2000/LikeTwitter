@@ -5,7 +5,6 @@ from LikeTwitter.apps.notes.views import AllNotesView, NoteByIdView
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^$',  AllNotesView.as_view(), name='AllNotesView'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

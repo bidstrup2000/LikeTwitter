@@ -64,7 +64,7 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/templates/') 
+STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/static/') 
 #STATIC_ROOT =  os.path.join(PROJECT_DIR, 'static/') 
 
 # URL prefix for static files.
