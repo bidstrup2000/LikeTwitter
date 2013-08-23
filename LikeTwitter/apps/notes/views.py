@@ -5,7 +5,7 @@ from LikeTwitter.apps.notes.models import Note
 
 def index(request):
     notes_list = Note.objects.all()
-    t = loader.get_template(r'notes.html')
+    t = loader.get_template('notes.html')
     c = Context({'notes':notes_list})
     return HttpResponse(t.render(c))
 
