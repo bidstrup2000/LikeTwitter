@@ -10,9 +10,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.#
         'NAME': 'E:\Python\Lib\django\db\django.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
@@ -62,9 +64,9 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/templates/') 
+
+STATIC_ROOT =  os.path.join(PROJECT_DIR, 'apps/notes/static/') 
 #STATIC_ROOT =  os.path.join(PROJECT_DIR, 'static/') 
 
 # URL prefix for static files.
