@@ -21,12 +21,12 @@ class AllNotesView(View):
         display 'body' of note         
         """
         notes_list = Note.objects.all()
-        form = Add_Form()
+        form = NewNoteForm()
         return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request)) 
     def post(self,request):
         """ Adding new note with POST request. Validating input data (min 10 symbols)"""
         notes_list = Note.objects.all()        
-        form = Add_Form(request.POST)
+        form = NewNoteForm(request.POST)
         if form.is_valid():
             form.save()
         t = loader.get_template('notes.html')

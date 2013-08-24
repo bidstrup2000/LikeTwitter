@@ -1,8 +1,9 @@
 from django.core.urlresolvers import reverse
 from django_webtest import WebTest
+from LikeTwitter.apps.notes.models import Note
 
 class My_test_case(WebTest):
-     """
+    """
     Class which inherits from WebTest and do tests of notes application
     """
     fixtures = ['fixtures\notes.json']
