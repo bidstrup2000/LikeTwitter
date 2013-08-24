@@ -6,6 +6,7 @@ register = template.Library()
 t = get_template('search_by_id.html')
 
 def search_by_id(id_of_note):
+    """ Return note by id from page template tag """
     notes_list = Note.objects.all()    
     note = Note.objects.get(id=int(id_of_note))
     return {'searched_note': note}
