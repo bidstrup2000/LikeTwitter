@@ -72,7 +72,7 @@ class My_test_case(WebTest):
                          'Duis facilisis nisl id tempor ultricies.',
                          'Duis at dolor neque',}
         for t in text_of_notes:
-            page = self.app.get(reverse('index')).form
+            page = self.app.get(reverse('AllNotesView')).form
             page['body'] = t
             page.submit()
             #print 'body '+str(Note.objects.get(body = t).body)

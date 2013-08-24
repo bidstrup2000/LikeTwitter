@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from LikeTwitter.apps.notes.models import Note
 from LikeTwitter.apps.notes.forms import NewNoteForm
 from django.views.generic.base import View
+from django.utils import simplejson
 
 class AllNotesView(View):        
     """
@@ -25,13 +26,17 @@ class AllNotesView(View):
         return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request)) 
     def post(self,request):
         """ Adding new note with POST request. Validating input data (min 10 symbols)"""
-        notes_list = Note.objects.all()        
         form = NewNoteForm(request.POST)
         if form.is_valid():
             form.save()
-        t = loader.get_template('notes.html')
-        c = Context({'notes':notes_list, 'form': form})
-        return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request)) 
+            body_of_note = form.cleaned_data['body']
+            t = loader.get_template('note_row_ajax.html')
+            c = Context({'note':body_of_note})
+            #json = simplejson.dumps({'body_of_note':body_of_note})            
+            #return HttpResponse(json, mimetype='application/json')
+            return render_to_response('note_row_ajax.html', {'note':body_of_note})
+        else:
+            return False
 
 class NoteByIdView(View):
     """
@@ -51,13 +56,6 @@ class NoteByIdView(View):
             t = loader.get_template('search_note.html')
             c = Context({'id_of_note':kwargs['id_of_note']})
             return HttpResponse(t.render(c))
-
-
-def add_note_ajax(request):
-    response = HttpResponse()
-    t = u"""<div class="col-lg-8">{{ note }} </div>"""
-    c = Context({'note':note})
-    return HttpResponse(t.render(c))
 
 
 

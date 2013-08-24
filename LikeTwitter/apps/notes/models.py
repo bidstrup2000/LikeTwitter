@@ -9,3 +9,4 @@ class Note(models.Model):
         return self.body
 
 #admin.site.register(Note)
+#<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

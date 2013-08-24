@@ -9,23 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap core CSS -->
-    <link href="/{{ STATIC_ROOT }}css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="/{{ STATIC_ROOT }}css/grid.css" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
   </head>
-
   <body>
     <div class="container">
-
       <h2>7Pages Twitter</h2>
-      <!--<p class="lead">Notes:</p>-->
-
       <h4>Notes</h4>
       <div class="row">
         <div class="col-lg-8">{% search_by_id  id_of_note %}</div>
       </div>
-
     </div> <!-- /container -->
-
   </body>
 </html>

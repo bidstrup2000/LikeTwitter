@@ -13,6 +13,5 @@ urlpatterns = patterns('',
     url(r'(?:.*?/)?(?P<path>(css|jquery|js|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
     url(r'^notes/(?P<id_of_note>[0-9]+)',   NoteByIdView.as_view() , name='NoteByIdView'),
     url(r'^notes/$', AllNotesView.as_view(), name='AllNotesView'),
-    url(r'^add/$', 'LikeTwitter.apps.notes.views.add_note_ajax', name='add_note_ajax'),
 )
 
