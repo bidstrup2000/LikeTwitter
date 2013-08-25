@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'LikeTwitter.apps',
     'LikeTwitter.apps.notes',
+    'south',
     
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
