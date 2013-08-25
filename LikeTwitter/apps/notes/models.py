@@ -5,9 +5,11 @@ class Note(models.Model):
     """ Class which store notes"""
     id = models.AutoField(primary_key=True)
     body = models.TextField()
-    image_of_note = models.ImageField(upload_to="note_images", null=True)
+    image_of_note = models.ImageField(upload_to="note_images", blank=True, null=True)
     def __unicode__(self):
         return self.body
 
 #admin.site.register(Note)
 #<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+#if ($('#id_image_of_note').val() == '') {  
+#action="/notes/"  method="POST"

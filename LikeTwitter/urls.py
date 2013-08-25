@@ -10,8 +10,11 @@ urlpatterns = patterns('',
     url(r'^$',  AllNotesView.as_view(), name='AllNotesView'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'(?:.*?/)?(?P<path>(css|jquery|js|images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
+    url(r'(?:.*?/)?(?P<path>(css|js)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }), 
     url(r'^notes/(?P<id_of_note>[0-9]+)',   NoteByIdView.as_view() , name='NoteByIdView'),
     url(r'^notes/$', AllNotesView.as_view(), name='AllNotesView'),
 )
-
+if settings.DEBUG:
+    urlpatterns += patterns('',
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    'document_root': settings.MEDIA_ROOT}))

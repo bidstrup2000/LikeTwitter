@@ -12,4 +12,5 @@ class  NewNoteForm(forms.ModelForm):
     body = forms.CharField(widget = TextareaWithAmountOfSymbol, min_length=10)    
     class Meta:
         model = Note
+        fields = ['body', 'image_of_note']
 
