@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from LikeTwitter.apps.notes.models import Note
 from django_webtest import WebTest
 from LikeTwitter.apps.notes.models import Note
 
@@ -58,3 +59,15 @@ class My_test_case(WebTest):
         #    assert (u'Symbols count(min. 10):    ' + str(len(t))) in result_page
         #I have AssertionError at this place
         pass
+
+    def test_ticket5_show_total_count_of_notes(self):
+        text_of_notes = {'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
+                        'Nam id feugiat velit, quis placerat nisl. Nulla vel sagittis justo.',
+                        'Duis facilisis nisl id tempor ultricies.',
+                        'Duis at dolor neque'}
+        for t in text_of_notes:
+            page = self.app.get(reverse('all_notes_view')).form
+            page['body'] = t
+            page.submit()
+            page = self.app.get(reverse('all_notes_view'))
+            assert (u'Notes count: ' + str(Note.objects.count())) in page
