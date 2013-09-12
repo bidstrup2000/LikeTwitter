@@ -14,8 +14,8 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.#
-        'NAME': 'E:\Python\Lib\django\db\django.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'E:\Python\Lib\django\db\django.db',  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -138,6 +138,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_DIR, 'cover')
+TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

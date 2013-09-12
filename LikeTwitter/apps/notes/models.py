@@ -3,9 +3,7 @@ from django.contrib import admin
 
 
 class Note(models.Model):
-    """
-    Stores a note entry
-    """
+    """ Class which store notes"""
     id = models.AutoField(primary_key=True)
     body = models.TextField()
 

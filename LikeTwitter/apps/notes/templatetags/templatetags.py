@@ -6,7 +6,8 @@ register = template.Library()
 t = get_template('search_by_id.html')
 
 def search_by_id(id_of_note):
-    note = Note.objects.get(pk=id_of_note)
+    notes_list = Note.objects.all()    
+    note = Note.objects.get(id=int(id_of_note))
     return {'searched_note': note}
 
 register.inclusion_tag(t)(search_by_id)
