@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load templatetags %}
+    {% load staticfiles %}
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/grid.css" %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h2>7Pages Twitter</h2>
+      <h4>Notes</h4>
+      <div class="row">
+        <div class="col-lg-8">{% search_by_id  id_of_note %}</div>
+      </div>
+    </div> <!-- /container -->
+  </body>
+</html>
