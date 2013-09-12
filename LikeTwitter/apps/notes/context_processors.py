@@ -1,8 +1,9 @@
 from LikeTwitter.apps.notes.models import Note
 """
-Custom context processor which add few custom variables 
+Custom context processor which add few custom variables
 to template
 """
+
 
 def count_of_notes(request):
     """ Return total count of notes"""
