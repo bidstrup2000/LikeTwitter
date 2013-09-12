@@ -130,14 +130,14 @@
     7 total statements,
     <span class="normal">100.0% covered</span>
   </h1>
-  <p>Generated: Sun 2013-08-25 12:29 Финляндия (лето)</p>
+  <p>Generated: Thu 2013-09-12 22:30 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\custom_widgets.py</p>
   <p>
     Stats:
     <span class="executed">4 executed</span>,
     <span class="missed">0 missed</span>,
     <span class="excluded">3 excluded</span>,
-    <span class="ignored">7 ignored</span> 
+    <span class="ignored">8 ignored</span> 
   </p> 
 </div>
 
@@ -147,16 +147,17 @@
 <li class="excluded"><code>from string import Template</code></li>
 <li class="excluded"><code>from django.utils.safestring import mark_safe</code></li>
 <li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
 <li class="executed"><code>class TextareaWithAmountOfSymbol(forms.Textarea):</code></li>
-<li class="ignored"><code>   """ Custom widget with amount of symbols """</code></li>
-<li class="executed"><code>   def render(self, name, value, attrs=None):</code></li>
-<li class="ignored"><code>      """ Render custom widget with amount of symbols"""</code></li>
-<li class="executed"><code>      tpl = Template(u"""</code></li>
-<li class="ignored"><code>      &lt;textarea cols="40" id="id_body" name="body" rows="10"&gt;$body&lt;/textarea&gt;</code></li>
-<li class="ignored"><code>      &lt;h5 id="id_symbol_count" name = "symbols_count"&gt;&lt;/h5&gt;</code></li>
-<li class="ignored"><code>      &lt;script src="js/text_area_with_counter.js"&gt;&lt;/script&gt;</code></li>
-<li class="ignored"><code>      """)</code></li>
-<li class="executed"><code>      return mark_safe(tpl.substitute(body = value))</code></li>
+<li class="ignored"><code>    """ Custom widget with amount of symbols """</code></li>
+<li class="executed"><code>    def render(self, name, value, attrs=None):</code></li>
+<li class="ignored"><code>        """ Render custom widget with amount of symbols"""</code></li>
+<li class="executed"><code>        tpl = Template(u"""</code></li>
+<li class="ignored"><code>        &lt;textarea cols="40" id="id_body" name="body" rows="10"&gt;$body&lt;/textarea&gt;</code></li>
+<li class="ignored"><code>        &lt;h5 id="id_symbol_count" name = "symbols_count"&gt;&lt;/h5&gt;</code></li>
+<li class="ignored"><code>        &lt;script src="js/text_area_with_counter.js"&gt;&lt;/script&gt;</code></li>
+<li class="ignored"><code>        """)</code></li>
+<li class="executed"><code>        return mark_safe(tpl.substitute(body=value))</code></li>
   </ol>
 </div>
 

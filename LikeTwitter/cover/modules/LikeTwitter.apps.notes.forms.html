@@ -127,17 +127,17 @@
 <div id="content-header">
   <h1>
     <span id="module-name">LikeTwitter.apps.notes.forms</span>:
-    8 total statements,
+    7 total statements,
     <span class="normal">100.0% covered</span>
   </h1>
-  <p>Generated: Sun 2013-08-25 12:29 Финляндия (лето)</p>
+  <p>Generated: Thu 2013-09-12 22:30 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\forms.py</p>
   <p>
     Stats:
     <span class="executed">4 executed</span>,
     <span class="missed">0 missed</span>,
-    <span class="excluded">4 excluded</span>,
-    <span class="ignored">7 ignored</span> 
+    <span class="excluded">3 excluded</span>,
+    <span class="ignored">9 ignored</span> 
   </p> 
 </div>
 
@@ -145,19 +145,20 @@
   <ol>
     <li class="excluded"><code>from django import forms</code></li>
 <li class="excluded"><code>from LikeTwitter.apps.notes.models import Note</code></li>
-<li class="excluded"><code>from django.contrib import admin</code></li>
+<li class="ignored"><code></code></li>
 <li class="excluded"><code>from LikeTwitter.apps.notes.custom_widgets import TextareaWithAmountOfSymbol</code></li>
 <li class="ignored"><code></code></li>
-<li class="executed"><code>class  NewNoteForm(forms.ModelForm):</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>class NewNoteForm(forms.ModelForm):</code></li>
 <li class="ignored"><code>    """</code></li>
 <li class="ignored"><code>    Form which contains custom widget.</code></li>
 <li class="ignored"><code>    Custom Widget that extends Textarea widget and shows dynamically</code></li>
 <li class="ignored"><code>    amount of symbols are writed in this field.</code></li>
 <li class="ignored"><code>    """</code></li>
-<li class="executed"><code>    body = forms.CharField(widget = TextareaWithAmountOfSymbol, min_length=10)</code></li>
+<li class="executed"><code>    body = forms.CharField(widget=TextareaWithAmountOfSymbol, min_length=10)</code></li>
+<li class="ignored"><code></code></li>
 <li class="executed"><code>    class Meta:</code></li>
 <li class="executed"><code>        model = Note</code></li>
-<li class="ignored"><code></code></li>
   </ol>
 </div>
 
