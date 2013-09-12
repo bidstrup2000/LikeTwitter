@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib import admin
+#from django.contrib import admin
 
 
 class Note(models.Model):
@@ -10,4 +10,4 @@ class Note(models.Model):
     def __unicode__(self):
         return self.body
 
-admin.site.register(Note)
+#admin.site.register(Note)
