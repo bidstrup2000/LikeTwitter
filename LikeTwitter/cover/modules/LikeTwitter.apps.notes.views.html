@@ -126,17 +126,17 @@
 <div id="content-header">
   <h1>
     <span id="module-name">LikeTwitter.apps.notes.views</span>:
-    24 total statements,
-    <span class="normal">76.5% covered</span>
+    25 total statements,
+    <span class="critical">44.4% covered</span>
   </h1>
-  <p>Generated: Thu 2013-09-12 21:52 Финляндия (лето)</p>
+  <p>Generated: Thu 2013-09-12 23:01 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\views.py</p>
   <p>
     Stats:
-    <span class="executed">13 executed</span>,
-    <span class="missed">4 missed</span>,
+    <span class="executed">8 executed</span>,
+    <span class="missed">10 missed</span>,
     <span class="excluded">7 excluded</span>,
-    <span class="ignored">28 ignored</span> 
+    <span class="ignored">29 ignored</span> 
   </p> 
 </div>
 
@@ -170,11 +170,13 @@
 <li class="ignored"><code></code></li>
 <li class="executed"><code>    def post(self, request):</code></li>
 <li class="ignored"><code>        """ Adding new note with POST request. Validating input data (min 10 symbols)"""</code></li>
-<li class="executed"><code>        notes_list = Note.objects.all()</code></li>
-<li class="executed"><code>        form = NewNoteForm(request.POST)</code></li>
-<li class="executed"><code>        if form.is_valid():</code></li>
-<li class="executed"><code>            form.save()</code></li>
-<li class="executed"><code>        return render_to_response('notes.html', {'notes': notes_list, 'form': form}, context_instance=RequestContext(request))</code></li>
+<li class="missed"><code>        form = NewNoteForm(request.POST)</code></li>
+<li class="missed"><code>        if form.is_valid():</code></li>
+<li class="missed"><code>            form.save()</code></li>
+<li class="missed"><code>            body_of_note = form.cleaned_data['body']</code></li>
+<li class="missed"><code>            return render_to_response('note_row_ajax.html', {'note': body_of_note})</code></li>
+<li class="ignored"><code>        else:</code></li>
+<li class="missed"><code>            return False</code></li>
 <li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>class NoteByIdView(View):</code></li>
@@ -193,7 +195,7 @@
 <li class="missed"><code>        if kwargs['id_of_note'] is not None:</code></li>
 <li class="missed"><code>            t = loader.get_template('search_note.html')</code></li>
 <li class="missed"><code>            c = Context({'id_of_note': kwargs['id_of_note']})</code></li>
-<li class="missed"><code>        return HttpResponse(t.render(c))</code></li>
+<li class="missed"><code>            return HttpResponse(t.render(c))</code></li>
   </ol>
 </div>
 

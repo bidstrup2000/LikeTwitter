@@ -26,11 +26,13 @@ class AllNotesView(View):
 
     def post(self, request):
         """ Adding new note with POST request. Validating input data (min 10 symbols)"""
-        notes_list = Note.objects.all()
         form = NewNoteForm(request.POST)
         if form.is_valid():
             form.save()
-        return render_to_response('notes.html', {'notes': notes_list, 'form': form}, context_instance=RequestContext(request))
+            body_of_note = form.cleaned_data['body']
+            return render_to_response('note_row_ajax.html', {'note': body_of_note})
+        else:
+            return False
 
 
 class NoteByIdView(View):
@@ -49,4 +51,4 @@ class NoteByIdView(View):
         if kwargs['id_of_note'] is not None:
             t = loader.get_template('search_note.html')
             c = Context({'id_of_note': kwargs['id_of_note']})
-        return HttpResponse(t.render(c))
+            return HttpResponse(t.render(c))
