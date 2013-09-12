@@ -1,1 +1,1 @@
-""" Appication for displaying, searching, editing users notes """ 
+""" Appication for displaying, searching, editing users notes """
