@@ -1,0 +1,46 @@
+h1 {
+	font-weight: bolder;
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #0070BA;
+}
+.notes {
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #B2D4EA;
+	}
+div.media {
+	border-radius: 10px;
+	/*background-color: #6B86A6;*/
+	}
+div.row {
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px;
+	background-color: white;
+	}
+#notesd-count {
+	color: white;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px;
+	background-color: #6B86A6;
+	}
+#add_note {
+	border-radius: 5px;
+	margin-top: 10px;
+	padding: 5px;
+	background-color: #B2D4EA;
+	}
+[errors='errors'] {
+	border-radius: 5px;
+    color: rgb(255,0,0);
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-right: 10px;
+    background-color: white;
+}
+tr* {
+	margin: 10px;
+}

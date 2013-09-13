@@ -4,7 +4,7 @@ from django_webtest import WebTest
 from LikeTwitter.apps.notes.models import Note
 
 
-class My_test_case(WebTest):
+class my_test_case(WebTest):
     """
     Class which inherits from WebTest and do tests of notes application
     """
@@ -38,9 +38,7 @@ class My_test_case(WebTest):
             page.submit()
         result_page = self.app.get(reverse('all_notes_view'))
         for t in text_of_notes:
-            pass
-            # using Ajax instead
-            # assert t in result_page
+            assert t in result_page
 
     def test_ticket4_write_custom_widget_creating_new_form(self):
         """
@@ -86,8 +84,23 @@ class My_test_case(WebTest):
         #                 'Duis facilisis nisl id tempor ultricies.',
         #                 'Duis at dolor neque',}
         #for t in text_of_notes:
-        #    page = self.app.get(reverse('AllNotesView')).form
+        #    page = self.app.get(reverse('all_notes_view')).form
         #    page['body'] = t
         #    page.submit()
         #    self.assertEqual(Note.objects.get(body = t).body,t)
         #I have AssertionError at this place
+
+    def test_ticket7_add_ability_to_attach_image_to_note(self):
+        """ Check updated page for new note entered via form. """
+        page = self.app.get(reverse('all_notes_view')).form
+        text_of_notes = {'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
+                         'Nam id feugiat velit, quis placerat nisl. Nulla vel sagittis justo.',
+                         'Duis facilisis nisl id tempor ultricies.',
+                         'Duis at dolor neque'}
+        for t in text_of_notes:
+            page['body'] = t
+            page.submit()
+        result_page = self.app.get(reverse('all_notes_view'))
+        for t in text_of_notes:
+            pass
+            #assert t in result_page

@@ -1,2 +1,5 @@
 *.pyc
 *.db
+LikeTwitter/cover
+LikeTwitter/cover/*
+LikeTwitter/apps/notes/media/note_images

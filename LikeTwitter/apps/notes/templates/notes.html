@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>    
     {% load static %}    
     {% load staticfiles %}  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
-    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>
-    <script type="text/javascript" language="javascript" src="{% static "js/send_form_with_ajax.js" %}"></script>
+    <link href="{% static "css/grid.css" %}" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>   
+    <script type="text/javascript" language="javascript" src="{% static "js/bootstrap.min.js" %}"></script>    
+    <script type="text/javascript" language="javascript" src="{% static "js/send_form_with_ajax.js" %}"></script>   
   </head>     
   <body>
     <div class="container">     
-      <h2>7Pages Twitter</h2>
-      <h4>Notes:</h4>
-      {% for note in notes %}     
-        <div class="row">       
-          <div class="col-lg-8">{{ note }} </div>     
+      <h1 align="center">7Pages Twitter</h2>
+      <div class = 'notes'>
+        <h4>Notes:</h4>
+        <div class="media">
+        {% for note in notes %}     
+        <div class="row">
+          <div class="media-body">
+            <div class="col-md-8">{{ note }} </div>     
+          </div>
+          {% if note.image_of_note.url != null %}
+            <a class="pull-left" href="{{ note.image_of_note.url }}">
+              <img class="media-object" src="{{ note.image_of_note.url }}">
+            </a>
+          {% endif %}
+        </div>    
+        {% endfor %}
         </div>
-      {% endfor %}
-      <h5>Notes count: {{ total_count_of_notes }}<h5>
-      <form id = "add_note" action="" >{% csrf_token %}
+        <h5 id = "notes-count"><strong>Notes count: {{ total_count_of_notes }}</strong><h5>
+      </div>
+      <form id = "add_note" action="" method ="POST" enctype="multipart/form-data">{% csrf_token %}
         {{ form }}
-        <input type="submit" value= "Send">      
+          <input type="submit" value= "Send">
       </form>
     </div>
   </body>
