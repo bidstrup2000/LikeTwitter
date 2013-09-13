@@ -126,15 +126,15 @@
 <div id="content-header">
   <h1>
     <span id="module-name">LikeTwitter.apps.notes.views</span>:
-    28 total statements,
-    <span class="critical">40.0% covered</span>
+    35 total statements,
+    <span class="warning">59.3% covered</span>
   </h1>
-  <p>Generated: Sun 2013-08-25 12:29 Финляндия (лето)</p>
+  <p>Generated: Mon 2013-08-26 03:22 Финляндия (лето)</p>
   <p>Source file: E:\MyPrograms\05_Test7Pages\LikeTwitter\LikeTwitter\apps\notes\views.py</p>
   <p>
     Stats:
-    <span class="executed">8 executed</span>,
-    <span class="missed">12 missed</span>,
+    <span class="executed">16 executed</span>,
+    <span class="missed">11 missed</span>,
     <span class="excluded">8 excluded</span>,
     <span class="ignored">34 ignored</span> 
   </p> 
@@ -165,21 +165,28 @@
 <li class="ignored"><code>        Response to GET request. Display lists of notes. If request contains certain 'id' note -</code></li>
 <li class="ignored"><code>        display 'body' of note</code></li>
 <li class="ignored"><code>        """</code></li>
+<li class="ignored"><code>        #Note.objects.all().delete()</code></li>
 <li class="executed"><code>        notes_list = Note.objects.all()</code></li>
 <li class="executed"><code>        form = NewNoteForm()</code></li>
 <li class="executed"><code>        return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request))</code></li>
-<li class="executed"><code>    def post(self,request):</code></li>
+<li class="executed"><code>    def post(self, request):</code></li>
 <li class="ignored"><code>        """ Adding new note with POST request. Validating input data (min 10 symbols)"""</code></li>
-<li class="missed"><code>        form = NewNoteForm(request.POST)</code></li>
-<li class="missed"><code>        if form.is_valid():</code></li>
-<li class="missed"><code>            form.save()</code></li>
-<li class="missed"><code>            body_of_note = form.cleaned_data['body']</code></li>
-<li class="missed"><code>            t = loader.get_template('note_row_ajax.html')</code></li>
-<li class="missed"><code>            c = Context({'note':body_of_note})</code></li>
-<li class="ignored"><code>            #json = simplejson.dumps({'body_of_note':body_of_note})</code></li>
-<li class="ignored"><code>            #return HttpResponse(json, mimetype='application/json')</code></li>
-<li class="missed"><code>            return render_to_response('note_row_ajax.html', {'note':body_of_note})</code></li>
+<li class="executed"><code>        form = NewNoteForm(request.POST, request.FILES)</code></li>
+<li class="executed"><code>        if form.is_valid():</code></li>
+<li class="executed"><code>            form.save()</code></li>
+<li class="executed"><code>            if str(request.POST.get('image_of_note')) == "":</code></li>
+<li class="missed"><code>                form.save()</code></li>
+<li class="missed"><code>                body_of_note = form.cleaned_data['body']</code></li>
+<li class="missed"><code>                t = loader.get_template('note_row_ajax.html')</code></li>
+<li class="missed"><code>                c = Context({'note':body_of_note})</code></li>
+<li class="missed"><code>                return render_to_response('note_row_ajax.html', {'note':body_of_note})</code></li>
+<li class="ignored"><code>            else:</code></li>
+<li class="executed"><code>                notes_list = Note.objects.all()</code></li>
+<li class="executed"><code>                t = loader.get_template('notes.html')</code></li>
+<li class="executed"><code>                c = Context({'notes':notes_list, 'form': form})</code></li>
+<li class="executed"><code>                return render_to_response('notes.html', {'notes':notes_list, 'form': form}, context_instance=RequestContext(request))</code></li>
 <li class="ignored"><code>        else:</code></li>
+<li class="missed"><code>            print 'Form is not valid '</code></li>
 <li class="missed"><code>            return False</code></li>
 <li class="ignored"><code></code></li>
 <li class="executed"><code>class NoteByIdView(View):</code></li>
