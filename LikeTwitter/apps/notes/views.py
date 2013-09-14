@@ -33,18 +33,15 @@ class AllNotesView(View):
             form.save()
             if (len(request.FILES) == 0):
                 body_of_note = form.cleaned_data['body']
-                print 'without image'
                 return render_to_response('note_row_ajax.html', {'note': body_of_note})
             else:
                 notes_list = Note.objects.all()
-                print 'with image'
                 return render_to_response('notes.html', {'notes': notes_list, 'form': form}, context_instance=RequestContext(request))
         else:
             print 'Form is not valid'
             t = loader.get_template("validation_errors.html")
             c = Context({'form': form})
             return HttpResponse(t.render(c))
-            #return render_to_response("validation_errors.html", {'form': form})
 
 
 class NoteByIdView(View):

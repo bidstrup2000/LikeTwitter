@@ -9,7 +9,7 @@ $(document).ready(function(){
         data: msg,
         success: function(data) {
             if (data.indexOf("errors") !=-1) {
-              $('#id_body').before(data);
+              $('#id_body').after(data)
             }
             else {
               $('.row').last().after(data);  

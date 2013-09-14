@@ -5,7 +5,7 @@ from LikeTwitter.apps.notes.custom_widgets import TextareaWithAmountOfSymbol
 
 class NewNoteForm(forms.ModelForm):
     """
-    Form which contains custom widget.
+    Form which contains custom widget.l
     Custom Widget that extends Textarea widget and shows dynamically
     amount of symbols are writed in this field.
     """
