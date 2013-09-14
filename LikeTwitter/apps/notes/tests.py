@@ -4,7 +4,7 @@ from django_webtest import WebTest
 from LikeTwitter.apps.notes.models import Note
 
 
-class my_test_case(WebTest):
+class MyTestCase(WebTest):
     """
     Class which inherits from WebTest and do tests of notes application
     """
