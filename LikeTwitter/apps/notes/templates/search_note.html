@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load static %}
     {% load templatetags %}
     {% load staticfiles %}
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+    <link href="{% static "css/grid.css" %}" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>   
+    <script type="text/javascript" language="javascript" src="{% static "js/bootstrap.min.js" %}"></script>    
   </head>
   <body>
     <div class="container">
-      <h2>7Pages Twitter</h2>
-      <h4>Notes:</h4>
-      <div class="row">
-        <div class="col-lg-8">{% search_by_id  id_of_note %}</div>
+      <h1 align="center">7Pages Twitter</h2>
+      <div class = 'notes'>
+        <h4>Notes:</h4>
+        <div class="row">
+          <div class="col-md-8">{% search_by_id  id_of_note %}</div>
+        </div>
       </div>
     </div> <!-- /container -->
   </body>
