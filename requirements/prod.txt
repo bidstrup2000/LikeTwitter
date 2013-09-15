@@ -1,2 +1,2 @@
 # requirements/prod.txt
--r common.txt
+Django==1.5.1

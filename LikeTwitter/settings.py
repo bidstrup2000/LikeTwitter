@@ -144,7 +144,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_DIR, 'cover')
-TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
+#TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
