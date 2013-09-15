@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render_to_response
 from django.template import loader, Context
 from django.template import RequestContext
@@ -60,3 +61,14 @@ class NoteByIdView(View):
             t = loader.get_template('search_note.html')
             c = Context({'id_of_note': kwargs['id_of_note']})
             return HttpResponse(t.render(c))
+
+
+class RandomNoteView(View):
+    """Display random note from model: "LikeTwitter.apps.notes.models.Note" """
+
+    def get(self, request):
+        notes_list_len = len(Note.objects.all())
+        notes_list = Note.objects.all()
+        random_index = random.randrange(0, (notes_list_len-1), 1)
+        random_note = notes_list[random_index]
+        return random_note
