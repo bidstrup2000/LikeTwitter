@@ -6,42 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
     <link href="{% static "css/grid.css" %}" type="text/css" rel="stylesheet"/>
-    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>   
-    <script type="text/javascript" language="javascript" src="{% static "js/bootstrap.min.js" %}"></script>    
-    <script type="text/javascript" language="javascript" src="{% static "js/send_form_with_ajax.js" %}"></script>   
+    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static "js/send_form_with_ajax.js" %}"></script>
   </head>     
   <body>
-    <div class="container">     
-      <h1 align="center">7Pages Twitter</h2>
+    <div class="container">
+      <h1>7Pages Twitter</h2>
       <div class = 'notes'>
         <h4>Notes:</h4>
         <div class="media">
-        {% for note in notes %}     
-        <div class="row">
-          <div class="media-body">
-            <div class="col-md-8">{{ note }} </div>     
-          </div>
-          {% if note.image_of_note.url != null %}
-            <a class="pull-left" href="{{ note.image_of_note.url }}">
-              <img class="media-object" src="{{ note.image_of_note.url }}">
-            </a>
-          {% endif %}
-        </div>    
-        {% endfor %}
+          {% for note in notes %}
+          <div class="row">
+            <div class="media-body">
+              <div class="col-md-8">{{ note }} </div>
+            </div>
+              {% if note.image_of_note.url != null %}
+              <a class="pull-left" href="{{ note.image_of_note.url }}">
+                <img class="media-object" src="{{ note.image_of_note.url }}">
+              </a>
+            {% endif %}
+          </div>    
+          {% endfor %}
         </div>
-        <h5 id = "notes-count"><strong>Notes count: {{ total_count_of_notes }}</strong><h5>
+        <h5 id="notes-count"><strong>Notes count: {{ total_count_of_notes }}</strong><h5>
       </div>
-      <form id = "add_note" action="" method ="POST" enctype="multipart/form-data">{% csrf_token %}
+      <form id="add_note" action="" method ="POST" enctype="multipart/form-data">{% csrf_token %}
         {{ form }}
           <input type="submit" value= "Send">
       </form>
-    </div>
-    <div class="col-md-8">
-      <div class="col-md-4">
-        {{ random_note }}
-      </div>
-      <div class="col-md-4">
-        <xmp>{{ random_note }}</xmp>
+      <div id="random" >
+          <label for="random_note_text">Random note:</label>
+            {{ random_note }}
+          <label for="random_note_code">Code of random note:</label>
+          <xmp id="random_note_code" class="col-md-4">
+              {{ random_note }}
+          </xmp>
       </div>
     </div>
   </body>

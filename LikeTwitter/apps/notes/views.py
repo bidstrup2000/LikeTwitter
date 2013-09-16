@@ -69,6 +69,9 @@ class RandomNoteView(View):
     def get(self, request):
         notes_list_len = len(Note.objects.all())
         notes_list = Note.objects.all()
-        random_index = random.randrange(0, (notes_list_len-1), 1)
-        random_note = notes_list[random_index]
-        return random_note
+        if (notes_list_len > 0):
+            random_index = random.randrange(0, (notes_list_len), 1)
+            random_note = notes_list[random_index]
+            return HttpResponse(random_note)
+        else:
+            return HttpResponse("")

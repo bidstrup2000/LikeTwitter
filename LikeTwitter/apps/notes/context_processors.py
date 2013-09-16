@@ -13,6 +13,6 @@ def count_of_notes(request):
 
 
 def random_note(request):
-    random_note = mark_safe(u"""<h5 id="random_note"></h5>
-        <script src="js/random_note.js"></script>""")
+    random_note = mark_safe(u"""<div id="random_note" class="col-md-4"></div><script type="text/javascript" language="javascript"
+        src="js/random_note.js"></script>""")
     return {'random_note': random_note}
