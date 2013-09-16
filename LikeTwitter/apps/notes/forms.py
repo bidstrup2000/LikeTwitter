@@ -13,4 +13,4 @@ class NewNoteForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        fields = ['body', 'image_of_note']
+        fields = ['body', 'image_of_note', 'books']
