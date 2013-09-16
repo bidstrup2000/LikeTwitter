@@ -44,7 +44,6 @@ class AllNotesView(View):
                     {'notes': notes_list, 'form': form},
                     context_instance=RequestContext(request))
         else:
-            print 'Form is not valid'
             t = loader.get_template("validation_errors.html")
             c = Context({'form': form})
             return HttpResponse(t.render(c))
