@@ -27,8 +27,6 @@ div#random_note {
 	}
 
 xmp#random_note_code {
-	padding: 5px;
-	margin: 5px;
 	white-space: pre-line;
 	height: 140px; 
 	width: 300px;
