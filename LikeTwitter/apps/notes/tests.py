@@ -106,3 +106,11 @@ class MyTestCase(WebTest):
         for t in text_of_notes:
             pass
             #assert t in result_page
+
+    def test_ticket8_add_a_widget_with_random_note(self):
+        """
+        Check web page for random note
+        I use Ajax.
+        It's impossible to check with webtest
+        """
+        pass

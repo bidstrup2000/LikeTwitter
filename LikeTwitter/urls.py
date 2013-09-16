@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from LikeTwitter.apps.notes.views import AllNotesView, NoteByIdView
+from LikeTwitter.apps.notes.views import AllNotesView, NoteByIdView, RandomNoteView
 
 admin.autodiscover()
 
@@ -13,6 +13,7 @@ urlpatterns = patterns(
     url(r'(?:.*?/)?(?P<path>(css|js)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     url(r'^notes/(?P<id_of_note>[0-9]+)', NoteByIdView.as_view(), name='note_by_id_view'),
     url(r'^notes/$', AllNotesView.as_view(), name='all_notes_view'),
+    url(r'^random/$', RandomNoteView.as_view(), name='random_note_view'),
 )
 if settings.DEBUG:
     urlpatterns += patterns('', (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}))

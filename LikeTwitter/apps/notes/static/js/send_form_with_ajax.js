@@ -2,23 +2,23 @@ $(document).ready(function(){
   $('form').submit(function()  {
     $('[errors=errors]').remove()
     if ($('#id_image_of_note').val() == '') {
-      var msg   = $('#add_note').serialize();
+      var msg = $('#add_note').serialize();
       $.ajax({
         type: 'POST',
         url: 'notes/',
         data: msg,
         success: function(data) {
-            if (data.indexOf("errors") !=-1) {
-              $('#id_body').after(data)
-            }
-            else {
-              $('.row').last().after(data);  
-            }
+          if (data.indexOf("errors") !=-1) {
+            $('#id_body').after(data)
+          }
+          else {
+            $('.media').append(data);
+          }
         },
         error:  function(xhr, str){
           //$('.row').last().after(data);
-          alert('Exception ' + xhr.responseCode + ' str' + str + ' response' + xhr.responseText);
-         }
+          alert('Except' + xhr.responseCode);
+        }
       });
       return false;
     } 
