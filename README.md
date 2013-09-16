@@ -11,9 +11,9 @@ Test consist 9 different tasks which covers all Django development routine.
 
 2. Create environment and activate it:
 
-	cd LikeTwitter
-	virtualenv .env
-	source .env/Scripts/activate
+    cd LikeTwitter
+    virtualenv .env
+    source .env/Scripts/activate
 
 3. Install other packages
 
@@ -22,7 +22,7 @@ Test consist 9 different tasks which covers all Django development routine.
 4. Migrate to Django database
 
 	python manage.py syncdb --noinput
-	python manage.py migrate LikeTwitter
+    python manage.py migrate LikeTwitter
 	
 5. Run web development server
 
