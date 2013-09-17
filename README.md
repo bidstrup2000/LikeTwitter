@@ -1,4 +1,4 @@
-## This is a test tasks (Not for usage)
+﻿## This is a test tasks (Not for usage)
 
 ### Getting Started
 Test consist 9 different tasks which covers all Django development routine.
@@ -42,5 +42,6 @@ Run command: manage.py test notes
 Run command: "manage.py runserver 127.0.0.1:8000" (local development server will run at port:8000).
 Type "127.0.0.1:8000" at address bar of your browser. (You can type "127.0.0.1:8000/notes" too.)
 Main page of application will appear.
-To find note - type "127.0.0.1:8000/notes/<id of note>"
-to run admin interfase - type "127.0.0.1:8000/admin"
+To find note - type "127.0.0.1:8000/notes/[id_of_note]"
+To run admin interfase - type "127.0.0.1:8000/admin"
+If you want to add book, you can do this via admin interface ("127.0.0.1:8000/admin")
