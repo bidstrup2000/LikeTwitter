@@ -12,7 +12,6 @@ class Book(models.Model):
 
 class Note(models.Model):
     """ Class which contain user note"""
-    id = models.AutoField(primary_key=True)
     body = models.TextField()
     image_of_note = models.ImageField(upload_to="note_images", blank=True,
                                       null=True)

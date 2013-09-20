@@ -1,5 +1,5 @@
 import random
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import loader, Context
 from django.template import RequestContext
 from django.http import HttpResponse
@@ -23,31 +23,8 @@ class AllNotesView(View):
         """
         #Note.objects.all().delete()
         notes_list = Note.objects.all()
-        form = NewNoteForm()
-        return render_to_response('notes.html', {'notes': notes_list,
-            'form': form}, context_instance=RequestContext(request))
-
-    def post(self, request):
-        """
-        Adding new note with POST request. Validating input data
-        (min 10 symbols)
-        """
-        form = NewNoteForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            if (len(request.FILES) == 0):
-                body_of_note = form.cleaned_data['body']
-                return render_to_response('note_row_ajax.html',
-                                          {'note': body_of_note})
-            else:
-                notes_list = Note.objects.all()
-                return render_to_response('notes.html',
-                    {'notes': notes_list, 'form': form},
-                    context_instance=RequestContext(request))
-        else:
-            t = loader.get_template("validation_errors.html")
-            c = Context({'form': form})
-            return HttpResponse(t.render(c))
+        return render_to_response('notes.html', {'notes': notes_list},
+            context_instance=RequestContext(request))
 
 
 class NoteByIdView(View):
@@ -81,3 +58,72 @@ class RandomNoteView(View):
             return HttpResponse(random_note)
         else:
             return HttpResponse("")
+
+
+class AddNoteView(View):
+    """
+    Display form for adding note("LikeTwitter.apps.notes.models.Note") to database
+    Context:
+        notes:  List all notes of model: "LikeTwitter.apps.notes.models.Note"
+    Template: "notes.html"
+    """
+
+    def get(self, request, **kwargs):
+        """
+        Response to GET request. Display form for adding note
+        """
+        #Note.objects.all().delete()
+        form = NewNoteForm()
+        return render_to_response('add_note.html', {'form': form}, context_instance=RequestContext(request))
+
+    def post(self, request):
+        """
+        Adding new note with POST request. Validating input data
+        (min 10 symbols)
+        """
+        form = NewNoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            return render_to_response('add_note.html',
+                {'form': form}, context_instance=RequestContext(request))
+
+
+class AddNoteWithAjaxView(View):
+    """
+    Display form for adding note("LikeTwitter.apps.notes.models.Note") to database
+    Context:
+        notes:  List all notes of model: "LikeTwitter.apps.notes.models.Note"
+    Template: "notes.html"
+    """
+
+    def get(self, request, **kwargs):
+        """
+        Response to GET request. Display form for adding note
+        """
+        #Note.objects.all().delete()
+        form = NewNoteForm()
+        return render_to_response('add_note_with_ajax.html', {'form': form},
+            context_instance=RequestContext(request))
+
+    def post(self, request):
+        """
+        Adding new note with POST request. Validating input data
+        (min 10 symbols)
+        """
+        form = NewNoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            if (len(request.FILES) == 0):
+                return HttpResponse("123")
+            else:
+                return redirect('/')
+            #notes_list = Note.objects.all()
+            #return render_to_response('notes.html',
+            #    {'notes': notes_list, 'form': form},
+            #    context_instance=RequestContext(request))
+        else:
+            t = loader.get_template("validation_errors.html")
+            c = Context({'form': form})
+            return HttpResponse(t.render(c))

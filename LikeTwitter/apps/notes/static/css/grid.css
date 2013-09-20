@@ -10,6 +10,7 @@ h1 {
 	border-radius: 5px;
 	padding: 5px;
 	background-color: #B2D4EA;
+	margin-bottom: 10px;
 	}
 #random {
 	margin-top: 10px;
@@ -53,6 +54,7 @@ div.row {
 	background-color: #6B86A6;
 	}
 #add_note {
+	float: left;
 	border-radius: 5px;
 	margin-top: 10px;
 	padding: 10px;

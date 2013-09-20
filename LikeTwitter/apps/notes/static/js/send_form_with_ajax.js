@@ -5,18 +5,18 @@ $(document).ready(function(){
       var msg = $('#add_note').serialize();
       $.ajax({
         type: 'POST',
-        url: 'notes/',
+        url: '',
         data: msg,
         success: function(data) {
           if (data.indexOf("errors") !=-1) {
-            $('#id_body').after(data)
+            $('#id_body').after(data);
           }
           else {
-            $('.media').append(data);
-          }
+            document.location = '/';
+            }
         },
         error:  function(xhr, str){
-          //$('.row').last().after(data);
+          document.location = 'add_note_with_ajax/';
           alert('Except' + xhr.responseCode);
         }
       });

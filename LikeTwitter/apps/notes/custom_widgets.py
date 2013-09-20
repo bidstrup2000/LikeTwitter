@@ -11,8 +11,7 @@ class TextareaWithAmountOfSymbol(forms.Textarea):
     def render(self, name, value, attrs=None):
         """ Render custom widget with amount of symbols"""
         tpl = Template(u"""
-            <textarea cols="40" id="id_body" name="body" rows="10">$body
-            </textarea>
+            <textarea cols="40" id="id_body" name="body" rows="10">$body</textarea>
             <h5 id="id_symbol_count" name = "symbols_count"></h5>
             <script src="js/text_area_with_counter.js"></script>
             """)

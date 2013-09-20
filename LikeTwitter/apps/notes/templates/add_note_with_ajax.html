@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>    
+    {% load staticfiles %}  
+    <link href="{% static "css/grid.css" %}" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" language="javascript" src="{% static "js/jquery-1.10.2.min.js" %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static "js/send_form_with_ajax.js" %}"></script>
+  </head>
+  <body>
+    <form id="add_note" action="" method ="POST" enctype="multipart/form-data">{% csrf_token %}
+      <h1>Add note</h1>
+      <table>
+      {{form}}
+      </table>
+      <input type="submit" value= "Send">
+    </form>
+  </body>
+</html>

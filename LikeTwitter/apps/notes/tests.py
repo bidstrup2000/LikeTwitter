@@ -7,9 +7,8 @@ class MyTestCase(WebTest):
     """
     Class which inherits from WebTest and do tests of notes application
     """
-    fixtures = [r'fixtures\notes.json']
 
-    def test_ticket1_create_app_that_shows_list_of_text_notes(self):
+    def test_ticket1_list_of_all_notes(self):
         """ Check web page for presence all note records from database"""
         note_list = Note.objects.all()
         page = self.app.get(reverse('all_notes_view'))
@@ -32,7 +31,7 @@ class MyTestCase(WebTest):
         It's impossible to check with webtest (Ajax used)
         """
 
-        page = self.app.get(reverse('all_notes_view')).form
+        page = self.app.get(reverse('add_note')).form
         text_of_notes = {
             'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
             'Nam id feugiat velit, quis placerat nisl. Nulla gittis justo.',
@@ -43,13 +42,12 @@ class MyTestCase(WebTest):
             page.submit()
         result_page = self.app.get(reverse('all_notes_view'))
         for t in text_of_notes:
-            #assert t in result_page
-            pass
+            assert t in result_page
 
     def test_ticket4_write_custom_widget_creating_new_form(self):
         """
         Check count of symbol displayed dinamically.
-        It's impossible to check with webtest
+        It's impossible to check with webtest (Ajax used)
         """
         #page = self.app.get(reverse('index')).form
         #
@@ -73,7 +71,7 @@ class MyTestCase(WebTest):
             'Duis facilisis nisl id tempor ultricies.',
             'Duis at dolor neque'}
         for t in text_of_notes:
-            page = self.app.get(reverse('all_notes_view')).form
+            page = self.app.get(reverse('add_note')).form
             page['body'] = t
             page.submit()
             page = self.app.get(reverse('all_notes_view'))
@@ -101,7 +99,7 @@ class MyTestCase(WebTest):
         Check updated page for new note entered via form.
         It's impossible to check with webtest
         """
-        page = self.app.get(reverse('all_notes_view')).form
+        page = self.app.get(reverse('add_note')).form
         text_of_notes = {'Integer quis ipsum tincidunt, rutrum molestie dui.',
                          'Nam id feugiat velit, quis a vel sagittis justo.',
                          'Duis facilisis nisl id tempor ultricies.',
@@ -122,7 +120,7 @@ class MyTestCase(WebTest):
         """
         pass
 
-    def test_ticket8_create_book_model_to_store_notes(self):
+    def test_ticket9_create_book_model_to_store_notes(self):
         """ Check different book for stored the same note """
         book_1 = Book(name="The.Definitive.Guide.to.Django")
         book_1.save()
