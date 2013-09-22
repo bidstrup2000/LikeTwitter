@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from LikeTwitter.apps.notes.models import Book, Note
 from django_webtest import WebTest
+from django.template import loader, Context
 
 
 class MyTestCase(WebTest):
@@ -18,12 +19,23 @@ class MyTestCase(WebTest):
     def test_ticket2_create_custom_inclusion_template_tag(self):
         """ Check web page for presence searched note"""
         note_list = Note.objects.all()
+        maxId = 0
         for note in note_list:
             #Pass id of note in GET request and try to find 'body' of note
             #in response page
+            if note.id > maxId:
+                maxId = note.id
             page = self.app.get(reverse('note_by_id_view'), kwargs={
                 'id_of_note': note.id})
             assert note.body in page
+            #test only inclusion task
+            t = loader.get_template('search_note_incl_tag.html')
+            c = Context({'id_of_note': note.id})
+            assert note.body in t.render(c)
+        for note_id in [-1, 0, (maxId+1) , 'a']:
+            t = loader.get_template('search_note_incl_tag.html')
+            c = Context({'id_of_note': note_id})
+            assert "Note not found" in t.render(c)
 
     def test_ticket3_add_ability_to_add_new_text_node(self):
         """

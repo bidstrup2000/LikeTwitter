@@ -27,7 +27,6 @@ class AllNotesView(View):
             context_instance=RequestContext(request))
 
     def post(self, request):
-        print 'requestDict=== ' + str(request.POST)
         if request.POST[u'id_of_note']:
             id_of_note = request.POST[u'id_of_note']
         else:

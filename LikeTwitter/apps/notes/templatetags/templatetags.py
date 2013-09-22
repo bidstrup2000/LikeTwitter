@@ -5,7 +5,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('search_note_by_id.html')
-def search_note_by_id(id_of_note):
+def search_note(id_of_note):
     """ Return note by id from page template tag """
     try:
         note = Note.objects.get(id=int(id_of_note))
