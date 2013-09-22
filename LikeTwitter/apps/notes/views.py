@@ -26,6 +26,16 @@ class AllNotesView(View):
         return render_to_response('notes.html', {'notes': notes_list},
             context_instance=RequestContext(request))
 
+    def post(self, request):
+        print 'requestDict=== ' + str(request.POST)
+        if request.POST[u'id_of_note']:
+            id_of_note = request.POST[u'id_of_note']
+        else:
+            id_of_note = None
+        notes_list = Note.objects.all()
+        return render_to_response('notes.html', {'notes': notes_list, 'id_of_note': id_of_note},
+            context_instance=RequestContext(request))
+
 
 class NoteByIdView(View):
     """

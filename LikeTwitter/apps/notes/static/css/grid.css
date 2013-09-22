@@ -6,6 +6,23 @@ h1 {
 	padding: 10px;
 	background-color: #0070BA;
     }
+#navbar {
+	height: 28px;
+}
+#navbar ul li{
+	display: inline;
+	float: left;
+}
+#search_note_by_id {
+	display: inline;
+	float: right;
+}
+#search_note_by_id > {
+	margin-right: 15px;
+}
+#search_note_by_id label{
+	padding-top: 8px;
+}
 .notes {
 	border-radius: 5px;
 	padding: 5px;

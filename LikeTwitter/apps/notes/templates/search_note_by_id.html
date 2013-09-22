@@ -1,0 +1,8 @@
+    <div class="row">
+        <div class="">{{ searched_note }}</div>
+        {% if searched_note.image_of_note.url != null %}
+            <a href="{{ searched_note.image_of_note.url }}">
+            <img class="media-object" src="{{ searched_note.image_of_note.url }}">
+            </a>
+        {% endif %}
+    </div>

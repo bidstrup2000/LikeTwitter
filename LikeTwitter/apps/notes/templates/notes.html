@@ -2,7 +2,8 @@
 <html lang="en">
   <head>    
     {% load static %}    
-    {% load staticfiles %}  
+    {% load staticfiles %}
+    {% load templatetags %} 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
     <link href="{% static "css/grid.css" %}" type="text/css" rel="stylesheet"/>
@@ -13,10 +14,23 @@
     <div class="container">
       <h1>7Pages Twitter</h2>
       <div class = 'notes'>
-        <p>
-          <a class="btn btn-default" href="add_note/">Add note</a>
-          <a class="btn btn-default" href="add_note_with_ajax/">Add note with Ajax</a>
-        </p>
+          <!--<nav class="navbar navbar-default" role="navigation">-->
+          <div id="navbar">
+            <ul>
+            <li><a class="btn btn-default" href="add_note/">Add note</a></li>
+            <li><a class="btn btn-default" href="add_note_with_ajax/">Add note with Ajax</a></li>
+            <form id="search_note_by_id" action="" method ="POST">{% csrf_token %}
+              <li><label for="search_note_by_id">Search note by id:</label></li>
+              <li><input type="text" class="form-control" name="id_of_note" placeholder="Search"></li>
+              <li><button type="submit" class="btn btn-default">Submit</button></li>
+            </form>
+            </ul>
+          </div>
+          
+          <!--</nav>-->
+        {% if id_of_note %}
+          {% search_note_by_id  id_of_note %}
+        {% endif %}
         <h4>Notes:</h4>
         <div class="media">
           {% for note in notes %}

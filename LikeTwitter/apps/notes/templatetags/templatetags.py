@@ -1,14 +1,14 @@
 from LikeTwitter.apps.notes.models import Note
 from django import template
-from django.template.loader import get_template
 
 register = template.Library()
-t = get_template('search_by_id.html')
 
 
-def search_by_id(id_of_note):
+@register.inclusion_tag('search_note_by_id.html')
+def search_note_by_id(id_of_note):
     """ Return note by id from page template tag """
-    note = Note.objects.get(id=int(id_of_note))
+    try:
+        note = Note.objects.get(id=int(id_of_note))
+    except:
+        note = 'Note not found'
     return {'searched_note': note}
-
-register.inclusion_tag(t)(search_by_id)
