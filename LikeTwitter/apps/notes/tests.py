@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from LikeTwitter.apps.notes.models import Book, Note
 from django_webtest import WebTest
 from django.template import loader, Context
+import random
 
 
 class MyTestCase(WebTest):
@@ -42,19 +43,38 @@ class MyTestCase(WebTest):
         Check updated page for new note entered via form.
         It's impossible to check with webtest (Ajax used)
         """
-
-        page = self.app.get(reverse('add_note')).form
         text_of_notes = {
             'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
-            'Nam id feugiat velit, quis placerat nisl. Nulla gittis justo.',
+            'Nam id f',
             'Duis facilisis nisl id tempor ultricies.',
-            'Duis at dolor neque'}
+            'Duisdd'}
+        #Add books
+        books = {
+            'The.Definitive.Guide.to.Django.Web.Development.',
+            'Django.Podrobnoe.rukovodstvo',
+            'Django.Razrabotka.web-prilozhenij'}
+        for book_name in books:
+            book = Book(name=book_name)
+            book.save()
+        #
+        book_list = Book.objects.all()
+        book_list_len = len(book_list)
+        page = self.app.get(reverse('add_note')).form
         for t in text_of_notes:
+            random_index = random.randrange(0, (book_list_len), 1)
+            random_book = book_list[random_index]
             page['body'] = t
-            page.submit()
+            page['books'].value = [random_book.id]
+            submit_result = page.submit()
+            if len(t) > 9:
+                assert """class="errorlist""" not in submit_result
         result_page = self.app.get(reverse('all_notes_view'))
         for t in text_of_notes:
-            assert t in result_page
+            if len(t) > 9:
+                assert t in result_page
+            else:
+                assert t not in result_page
+
 
     def test_ticket4_write_custom_widget_creating_new_form(self):
         """
