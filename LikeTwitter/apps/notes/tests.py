@@ -153,12 +153,9 @@ class MyTestCase(WebTest):
 
     def test_ticket9_create_book_model_to_store_notes(self):
         """ Check different book for stored the same note """
-        book_1 = Book(name="The.Definitive.Guide.to.Django")
-        book_1.save()
-        book_2 = Book(name="Pro Django 2009")
-        book_2.save()
-        note_1 = Note(body='About the Authors')
-        note_1.save()
+        book_1 = Book.objects.create(name="The.Definitive.Guide.to.Django")
+        book_2 = Book.objects.create(name="Pro Django 2009")
+        note_1 = Note.objects.create(body='About the Authors')
         note_1.books.add(book_1, book_2)
         book_shelf = Book.objects.all()
         note_list = Note.objects.all()
