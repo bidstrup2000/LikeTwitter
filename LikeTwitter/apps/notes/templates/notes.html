@@ -17,8 +17,8 @@
           <!--<nav class="navbar navbar-default" role="navigation">-->
           <div id="navbar">
             <ul>
-            <li><a class="btn btn-default" href="add_note/">Add note</a></li>
-            <li><a class="btn btn-default" href="add_note_with_ajax/">Add note with Ajax</a></li>
+            <li><a class="btn btn-default" href="{{ add_note_href }}">Add note</a></li>
+            <li><a class="btn btn-default" href="{{ add_note_with_ajax_href }}">Add note with Ajax</a></li>
             <form id="search_note_by_id" action="" method ="POST">{% csrf_token %}
               <li><label for="search_note_by_id">Search note by id:</label></li>
               <li><input type="text" class="form-control" name="id_of_note" placeholder="Search"></li>

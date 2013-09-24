@@ -43,16 +43,16 @@ class MyTestCase(WebTest):
         Check updated page for new note entered via form.
         It's impossible to check with webtest (Ajax used)
         """
-        text_of_notes = {
+        text_of_notes = (
             'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
             'Nam id f',
             'Duis facilisis nisl id tempor ultricies.',
-            'Duisdd'}
+            'Duisdd')
         #Add books
-        books = {
+        books = (
             'The.Definitive.Guide.to.Django.Web.Development.',
             'Django.Podrobnoe.rukovodstvo',
-            'Django.Razrabotka.web-prilozhenij'}
+            'Django.Razrabotka.web-prilozhenij')
         for book_name in books:
             book = Book(name=book_name)
             book.save()
@@ -97,11 +97,11 @@ class MyTestCase(WebTest):
         pass
 
     def test_ticket5_show_total_count_of_notes(self):
-        text_of_notes = {
+        text_of_notes = (
             'Integer quis ipsum tincidunt, rutrum augue non, molestie dui.',
             'Nam id feugiat velit, quis placerat nisl. Nulla sagittis justo.',
             'Duis facilisis nisl id tempor ultricies.',
-            'Duis at dolor neque'}
+            'Duis at dolor neque')
         for t in text_of_notes:
             page = self.app.get(reverse('add_note')).form
             page['body'] = t
@@ -132,10 +132,10 @@ class MyTestCase(WebTest):
         It's impossible to check with webtest
         """
         page = self.app.get(reverse('add_note')).form
-        text_of_notes = {'Integer quis ipsum tincidunt, rutrum molestie dui.',
+        text_of_notes = ('Integer quis ipsum tincidunt, rutrum molestie dui.',
                          'Nam id feugiat velit, quis a vel sagittis justo.',
                          'Duis facilisis nisl id tempor ultricies.',
-                         'Duis at dolor neque'}
+                         'Duis at dolor neque')
         for t in text_of_notes:
             page['body'] = t
             page.submit()
