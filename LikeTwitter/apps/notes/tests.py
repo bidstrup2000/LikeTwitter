@@ -54,8 +54,7 @@ class MyTestCase(WebTest):
             'Django.Podrobnoe.rukovodstvo',
             'Django.Razrabotka.web-prilozhenij')
         for book_name in books:
-            book = Book(name=book_name)
-            book.save()
+            book = Book.objects.create(name=book_name)
         #
         book_list = Book.objects.all()
         book_list_len = len(book_list)
