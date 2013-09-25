@@ -16,7 +16,7 @@ class MyTestCase(WebTest):
         note_list = Note.objects.all()
         page = self.app.get(reverse('all_notes_view'))
         for note_string in note_list:
-            assert note_string in page
+            self.assertContains(page, note_string)
 
     def test_ticket2_create_custom_inclusion_template_tag(self):
         """ Check web page for presence searched note"""
@@ -33,11 +33,11 @@ class MyTestCase(WebTest):
             #test only inclusion task
             t = loader.get_template('search_note_incl_tag.html')
             c = Context({'id_of_note': note.id})
-            assert note.body in t.render(c)
-        for note_id in [-1, 0, (maxId+1) , 'a']:
+            self.assertContains(t.render(c), note.body)
+        for note_id in [-1, 0, (maxId+1), 'a']:
             t = loader.get_template('search_note_incl_tag.html')
             c = Context({'id_of_note': note_id})
-            assert "Note not found" in t.render(c)
+            self.assertIn("Note not found", t.render(c))
 
     def test_ticket3_add_ability_to_add_new_text_node(self):
         """
@@ -55,7 +55,7 @@ class MyTestCase(WebTest):
             'Django.Podrobnoe.rukovodstvo',
             'Django.Razrabotka.web-prilozhenij')
         for book_name in books:
-            book = Book.objects.create(name=book_name)
+            Book.objects.create(name=book_name)
         #
         book_list = Book.objects.all()
         book_list_len = len(book_list)
@@ -71,10 +71,9 @@ class MyTestCase(WebTest):
         result_page = self.app.get(reverse('all_notes_view'))
         for t in text_of_notes:
             if len(t) > 9:
-                assert t in result_page
+                self.assertContains(result_page, t)
             else:
-                assert t not in result_page
-
+                self.assertNotContains(result_page, t)
 
     def test_ticket4_write_custom_widget_creating_new_form(self):
         """
@@ -102,12 +101,25 @@ class MyTestCase(WebTest):
             'Nam id feugiat velit, quis placerat nisl. Nulla sagittis justo.',
             'Duis facilisis nisl id tempor ultricies.',
             'Duis at dolor neque')
+        books = (
+            'The.Definitive.Guide.to.Django.Web.Development.',
+            'Django.Podrobnoe.rukovodstvo',
+            'Django.Razrabotka.web-prilozhenij')
+        for book_name in books:
+            Book.objects.create(name=book_name)
+        book_list = Book.objects.all()
+        book_list_len = len(book_list)
+        note_count = 0
         for t in text_of_notes:
             page = self.app.get(reverse('add_note')).form
             page['body'] = t
+            random_index = random.randrange(0, (book_list_len), 1)
+            random_book = book_list[random_index]
+            page['books'].value = [random_book.id]
             page.submit()
+            note_count += 1
             page = self.app.get(reverse('all_notes_view'))
-            assert (u'Notes count: ' + str(Note.objects.count())) in page
+            self.assertContains(page, (u'Notes count: ' + str(note_count)))
 
     def test_ticket6_use_Ajax_to_create_new_text_note(self):
         """
@@ -129,7 +141,6 @@ class MyTestCase(WebTest):
     def test_ticket7_add_ability_to_attach_image_to_note(self):
         """
         Check updated page for new note entered via form.
-        It's impossible to check with webtest
         """
         text_of_notes = ('Integer quis ipsum tincidunt, rutrum molestie dui.',
                          'Nam id feugiat velit, quis a vel sagittis justo.',
@@ -176,3 +187,4 @@ class MyTestCase(WebTest):
         book_shelf = Book.objects.all()
         for b in book_shelf:
             assert note_1 in Note.objects.filter(books=b)
+            self.assertIn(note_1, Note.objects.filter(books=b))
