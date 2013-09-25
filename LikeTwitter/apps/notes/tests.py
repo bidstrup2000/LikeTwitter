@@ -155,8 +155,8 @@ class MyTestCase(WebTest):
         book_list = Book.objects.all()
         book_list_len = len(book_list)
         page = self.app.get(reverse('add_note')).form
-        image_of_note = r'note_images/images.jpg'
-        full_image_of_note_path = settings.MEDIA_ROOT + image_of_note
+        image_of_note = r'tests/images.jpg'
+        full_image_of_note_path = settings.STATIC_ROOT + image_of_note
         for t in text_of_notes:
             page['body'] = t
             random_index = random.randrange(0, (book_list_len), 1)
