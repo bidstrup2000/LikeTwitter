@@ -3,6 +3,7 @@ from LikeTwitter.apps.notes.models import Book, Note
 from django_webtest import WebTest
 from django.template import loader, Context
 import random
+from django.conf import settings
 
 
 class MyTestCase(WebTest):
@@ -130,18 +131,33 @@ class MyTestCase(WebTest):
         Check updated page for new note entered via form.
         It's impossible to check with webtest
         """
-        page = self.app.get(reverse('add_note')).form
         text_of_notes = ('Integer quis ipsum tincidunt, rutrum molestie dui.',
                          'Nam id feugiat velit, quis a vel sagittis justo.',
                          'Duis facilisis nisl id tempor ultricies.',
                          'Duis at dolor neque')
+        books = (
+            'The.Definitive.Guide.to.Django.Web.Development.',
+            'Django.Podrobnoe.rukovodstvo',
+            'Django.Razrabotka.web-prilozhenij')
+        for book_name in books:
+            Book.objects.create(name=book_name)
+        book_list = Book.objects.all()
+        book_list_len = len(book_list)
+        page = self.app.get(reverse('add_note')).form
+        image_of_note = r'note_images/images.jpg'
+        full_image_of_note_path = settings.MEDIA_ROOT + image_of_note
         for t in text_of_notes:
             page['body'] = t
+            random_index = random.randrange(0, (book_list_len), 1)
+            random_book = book_list[random_index]
+            page['books'].value = [random_book.id]
+            page['image_of_note'] = [full_image_of_note_path]
             page.submit()
         result_page = self.app.get(reverse('all_notes_view'))
         for t in text_of_notes:
-            pass
-            #assert t in result_page
+            self.assertContains(result_page, t)
+        for n in Note.objects.all():
+            self.assertContains(result_page, n.image_of_note.url)
 
     def test_ticket8_add_a_widget_with_random_note(self):
         """
@@ -158,6 +174,5 @@ class MyTestCase(WebTest):
         note_1 = Note.objects.create(body='About the Authors')
         note_1.books.add(book_1, book_2)
         book_shelf = Book.objects.all()
-        note_list = Note.objects.all()
         for b in book_shelf:
             assert note_1 in Note.objects.filter(books=b)
