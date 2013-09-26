@@ -12,8 +12,8 @@ $(document).ready(function(){
             $('#id_body').after(data);
           }
           else {
-            document.location = '/';
-            }
+            document.location.replace(data);
+          }
         },
         error:  function(xhr, str){
           document.location = 'add_note_with_ajax/';

@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from LikeTwitter.apps.notes.models import Note
 from LikeTwitter.apps.notes.forms import NewNoteForm
 from django.views.generic.base import View
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse
 
 
 class AllNotesView(View):
@@ -69,52 +71,31 @@ class RandomNoteView(View):
             return HttpResponse("")
 
 
-class AddNoteView(View):
+class AddNoteView(CreateView):
     """
     Display form for adding note("LikeTwitter.apps.notes.models.Note") to database
     Context:
         notes:  List all notes of model: "LikeTwitter.apps.notes.models.Note"
-    Template: "notes.html"
+    Template: "add_note.html"
     """
+    form_class = NewNoteForm
+    template_name = "add_note.html"
 
-    def get(self, request, **kwargs):
-        """
-        Response to GET request. Display form for adding note
-        """
-        #Note.objects.all().delete()
-        form = NewNoteForm()
-        return render_to_response('add_note.html', {'form': form}, context_instance=RequestContext(request))
-
-    def post(self, request):
-        """
-        Adding new note with POST request. Validating input data
-        (min 10 symbols)
-        """
-        form = NewNoteForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            return render_to_response('add_note.html',
-                {'form': form}, context_instance=RequestContext(request))
+    def get_success_url(self):
+        return reverse('all_notes_view')
 
 
-class AddNoteWithAjaxView(View):
+class AddNoteWithAjaxView(CreateView):
     """
     Display form for adding note("LikeTwitter.apps.notes.models.Note") to database
-    Context:
-        notes:  List all notes of model: "LikeTwitter.apps.notes.models.Note"
-    Template: "notes.html"
+    Template: "add_note_with_ajax.html"
     """
 
-    def get(self, request, **kwargs):
-        """
-        Response to GET request. Display form for adding note
-        """
-        #Note.objects.all().delete()
-        form = NewNoteForm()
-        return render_to_response('add_note_with_ajax.html', {'form': form},
-            context_instance=RequestContext(request))
+    form_class = NewNoteForm
+    template_name = "add_note_with_ajax.html"
+
+    def get_success_url(self):
+        return reverse('all_notes_view')
 
     def post(self, request):
         """
@@ -125,13 +106,9 @@ class AddNoteWithAjaxView(View):
         if form.is_valid():
             form.save()
             if (len(request.FILES) == 0):
-                return HttpResponse("123")
+                return HttpResponse(self.get_success_url())
             else:
-                return redirect('/')
-            #notes_list = Note.objects.all()
-            #return render_to_response('notes.html',
-            #    {'notes': notes_list, 'form': form},
-            #    context_instance=RequestContext(request))
+                return redirect(self.get_success_url())
         else:
             t = loader.get_template("validation_errors.html")
             c = Context({'form': form})
