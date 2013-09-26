@@ -1,5 +1,6 @@
 from LikeTwitter.apps.notes.models import Note
 from django import template
+#from django.core.context_processors import static
 
 register = template.Library()
 
