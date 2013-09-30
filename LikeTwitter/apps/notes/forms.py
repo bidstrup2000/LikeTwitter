@@ -9,7 +9,7 @@ class NewNoteForm(forms.ModelForm):
     Custom Widget that extends Textarea widget and shows dynamically
     amount of symbols are writed in this field.
     """
-    body = forms.CharField(widget=TextareaWithAmountOfSymbol, min_length=10)
+    body = forms.CharField(initial='', widget=TextareaWithAmountOfSymbol, min_length=10)
 
     class Meta:
         model = Note
