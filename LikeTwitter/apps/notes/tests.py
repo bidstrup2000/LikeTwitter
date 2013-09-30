@@ -108,17 +108,18 @@ class MyTestCase(WebTest):
             Book.objects.create(name=book_name)
         book_list = Book.objects.all()
         book_list_len = len(book_list)
-        note_count = len(Note.objects.all())
         for t in text_of_notes:
             page = self.app.get(reverse('add_note')).form
             page['body'] = t
             random_index = random.randrange(0, (book_list_len), 1)
             random_book = book_list[random_index]
             page['books'].value = [random_book.id]
+            count_before = Note.objects.count()
             page.submit()
-            note_count += 1
+            count_after = Note.objects.count()
+            self.assertEquals(count_before+1, count_after)
             page = self.app.get(reverse('all_notes_view'))
-            self.assertContains(page, (u'Notes count: ' + str(note_count)))
+            self.assertContains(page, (u'Notes count: ' + str(count_before+1)))
 
     def test_ticket6_use_Ajax_to_create_new_text_note(self):
         """
