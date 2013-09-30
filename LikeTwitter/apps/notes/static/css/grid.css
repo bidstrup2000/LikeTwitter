@@ -44,10 +44,11 @@ div#random_note {
 	background-color: white;
 	}
 
-xmp#random_note_code {
+div#random_note_code {
+	margin: 5px;
 	white-space: pre-line;
 	height: 140px; 
-	width: 300px;
+	width: 350px;
 	text-align: center;
 	border-radius: 5px;
 	background-color: white;

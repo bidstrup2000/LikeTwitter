@@ -19,9 +19,9 @@ def count_of_notes(request):
 def random_note(request):
     static_url = settings.STATIC_URL
     site = "http://" + str(Site.objects.get_current().domain)
-    random_note_full_url = mark_safe(u"""<div id="random_note" class="col-md-4"></div><script type="text/javascript"
+    random_note_full_url = (u"""<div id="random_note"></div><script type="text/javascript"
         language="javascript" src="%s%sjs/random_note.js"></script>""" % (site, static_url))
-    random_note_local_url = mark_safe(u"""<div id="random_note" class="col-md-4"></div><script type="text/javascript"
+    random_note_local_url = mark_safe(u"""<div id="random_note"></div><script type="text/javascript"
         language="javascript" src="%sjs/random_note.js"></script>""" % (static_url))
     return {'random_note_full_url': random_note_full_url, 'random_note_local_url': random_note_local_url}
 
