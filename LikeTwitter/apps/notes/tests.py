@@ -10,7 +10,7 @@ class MyTestCase(WebTest):
     """
     Class which inherits from WebTest and do tests of notes application
     """
-    fixtures = [r'notes.json']
+    fixtures = ['notes.json']
 
     def test_ticket1_list_of_all_notes(self):
         """ Check web page for presence all note records from database"""
