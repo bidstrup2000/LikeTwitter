@@ -10,6 +10,7 @@ class NewNoteForm(forms.ModelForm):
     amount of symbols are writed in this field.
     """
     body = forms.CharField(initial='', widget=TextareaWithAmountOfSymbol, min_length=10)
+    image_of_note = forms.ImageField(required=False)
 
     class Meta:
         model = Note
