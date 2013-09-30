@@ -10,6 +10,7 @@ class MyTestCase(WebTest):
     """
     Class which inherits from WebTest and do tests of notes application
     """
+    fixtures = [r'notes.json']
 
     def test_ticket1_list_of_all_notes(self):
         """ Check web page for presence all note records from database"""
@@ -27,13 +28,12 @@ class MyTestCase(WebTest):
             #in response page
             if note.id > maxId:
                 maxId = note.id
-            page = self.app.get(reverse('note_by_id_view'), kwargs={
-                'id_of_note': note.id})
-            assert note.body in page
+            page = self.app.get(reverse('note_by_id_view',  kwargs={'id_of_note': note.id}))
+            self.assertContains(page, note.body)
             #test only inclusion task
             t = loader.get_template('search_note_incl_tag.html')
             c = Context({'id_of_note': note.id})
-            self.assertContains(t.render(c), note.body)
+            self.assertIn(note.body, t.render(c))
         for note_id in [-1, 0, (maxId+1), 'a']:
             t = loader.get_template('search_note_incl_tag.html')
             c = Context({'id_of_note': note_id})
@@ -56,7 +56,6 @@ class MyTestCase(WebTest):
             'Django.Razrabotka.web-prilozhenij')
         for book_name in books:
             Book.objects.create(name=book_name)
-        #
         book_list = Book.objects.all()
         book_list_len = len(book_list)
         page = self.app.get(reverse('add_note')).form
@@ -109,7 +108,7 @@ class MyTestCase(WebTest):
             Book.objects.create(name=book_name)
         book_list = Book.objects.all()
         book_list_len = len(book_list)
-        note_count = 0
+        note_count = len(Note.objects.all())
         for t in text_of_notes:
             page = self.app.get(reverse('add_note')).form
             page['body'] = t
@@ -168,7 +167,8 @@ class MyTestCase(WebTest):
         for t in text_of_notes:
             self.assertContains(result_page, t)
         for n in Note.objects.all():
-            self.assertContains(result_page, n.image_of_note.url)
+            if n.image_of_note:
+                self.assertContains(result_page, n.image_of_note.url)
 
     def test_ticket8_add_a_widget_with_random_note(self):
         """
@@ -184,7 +184,9 @@ class MyTestCase(WebTest):
         book_2 = Book.objects.create(name="Pro Django 2009")
         note_1 = Note.objects.create(body='About the Authors')
         note_1.books.add(book_1, book_2)
-        book_shelf = Book.objects.all()
-        for b in book_shelf:
-            assert note_1 in Note.objects.filter(books=b)
-            self.assertIn(note_1, Note.objects.filter(books=b))
+        # Note can store more than one book
+        self.assertIn(note_1, Note.objects.filter(books=book_1))
+        self.assertIn(note_1, Note.objects.filter(books=book_2))
+        # Every note store in book
+        for n in Note.objects.all():
+            self.assertEquals(n.books.count() > 0, True)
