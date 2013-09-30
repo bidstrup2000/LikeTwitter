@@ -88,8 +88,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'LikeTwitter.apps.notes.context_processors.count_of_notes',
     'LikeTwitter.apps.notes.context_processors.random_note',
-    'LikeTwitter.apps.notes.context_processors.add_note_href',
-    'LikeTwitter.apps.notes.context_processors.add_note_with_ajax_href',
     'LikeTwitter.apps.notes.context_processors.site_url'
 )
 

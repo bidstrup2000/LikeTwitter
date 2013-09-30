@@ -26,18 +26,6 @@ def random_note(request):
     return {'random_note_full_url': random_note_full_url, 'random_note_local_url': random_note_local_url}
 
 
-def add_note_href(request):
-    """ Return href to add note view"""
-    href = reverse("add_note")
-    return {'add_note_href':  href}
-
-
-def add_note_with_ajax_href(request):
-    """ Return href to add note view"""
-    href = reverse("add_note_with_ajax")
-    return {'add_note_with_ajax_href':  href}
-
-
 def site_url(request):
     """ Return current site url"""
     site = "http://" + str(Site.objects.get_current().domain)
