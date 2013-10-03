@@ -1,9 +1,11 @@
 ﻿$(document).ready(function(){
+  var random_note_url = ($("#random_note").attr('url') + ('random/'));
   $.ajax({
-    url: 'random/',
-    dataType: 'html',
-    success: function(data) {
-      $("#random_note").append(data)
+    crossDomain: true,
+    url: random_note_url,
+    dataType: 'jsonp',
+    success: function(json) {
+      $("#random_note").append(json.random_note)
     },
     error:  function(xhr, str){
     }

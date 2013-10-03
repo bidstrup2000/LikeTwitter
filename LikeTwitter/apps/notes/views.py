@@ -66,7 +66,8 @@ class RandomNoteView(View):
         if (notes_list_len > 0):
             random_index = random.randrange(0, (notes_list_len), 1)
             random_note = notes_list[random_index]
-            return HttpResponse(random_note)
+            json_string = """%s({"random_note": "%s"})""" % (request.GET[u'callback'], random_note)
+            return HttpResponse(json_string)
         else:
             return HttpResponse("")
 
