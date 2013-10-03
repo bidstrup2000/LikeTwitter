@@ -19,16 +19,12 @@ Test consist 9 different tasks which covers all Django development routine.
 
 	pip install -r requirements.txt
 	
-4. Install Python Image Library
-
-	http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe
-
-5. Migrate to Django database
+4. Migrate to Django database
 
 	python manage.py syncdb --noinput
     python manage.py migrate LikeTwitter
 	
-6. Run web development server
+5. Run web development server
 
 	python manage.py runserver
 

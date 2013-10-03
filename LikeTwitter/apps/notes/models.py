@@ -15,7 +15,7 @@ class Note(models.Model):
     body = models.TextField()
     image_of_note = models.ImageField(upload_to="note_images", blank=True,
                                       null=True)
-    books = models.ManyToManyField(Book)
+    books = models.ManyToManyField(Book, blank=True, null=True)
 
     def __unicode__(self):
         return self.body
