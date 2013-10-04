@@ -8,6 +8,8 @@ from LikeTwitter.apps.notes.forms import NewNoteForm
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse
+import json
+from django.contrib.sites.models import Site
 
 
 class AllNotesView(View):
@@ -66,7 +68,12 @@ class RandomNoteView(View):
         if (notes_list_len > 0):
             random_index = random.randrange(0, (notes_list_len), 1)
             random_note = notes_list[random_index]
-            json_string = """%s({"random_note": "%s"})""" % (request.GET[u'callback'], random_note)
+            site = "http://" + str(Site.objects.get_current().domain)
+            t = loader.get_template('random_note.html')
+            c = Context({'note': random_note, 'site_url': site})
+            random_note_html = (t.render(c))
+            json_of_random_note_html = (json.dumps(random_note_html))
+            json_string = """%s({"random_note": %s})""" % (request.GET[u'callback'], json_of_random_note_html)
             return HttpResponse(json_string)
         else:
             return HttpResponse("")

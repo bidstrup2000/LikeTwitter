@@ -1,0 +1,6 @@
+<div>{{ note }}</div>
+{% if note.image_of_note %}
+  <a href="{{site_url}}{{ note.image_of_note.url }}">
+    <img src="{{site_url}}{{ note.image_of_note.url }}">
+  </a>
+{% endif %}
